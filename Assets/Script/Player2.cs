@@ -6,12 +6,14 @@ public class Player2 : MonoBehaviour
 {
     public float Velocidade;
     public Animator anim;
+    public float force;
 
     float InputX;
     float InputZ;
     Vector3 Direcao;
 
     public Camera MainCamera;
+
     public float VelocidadeCamera;
     public float VelocidadeRotacaoCamera;
     public Vector3 CameraOffset;
@@ -24,11 +26,13 @@ public class Player2 : MonoBehaviour
 
     void Update()
     {
+        //movimento
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
         Direcao = new Vector3(InputX, 0, InputZ);
-        var pos = transform.position - MainCamera.transform.forward * CameraOffset.z
-                  + MainCamera.transform.up * CameraOffset.y + MainCamera.transform.right * CameraOffset.x;
+
+
+
 
         if (InputX == 0 || InputZ == 0)
         {
@@ -61,6 +65,17 @@ public class Player2 : MonoBehaviour
             }
 
         }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            transform.Translate(transform.up * Time.deltaTime * force);
+        }
 
-}
+        //camera
+        var pos = transform.position - MainCamera.transform.forward * CameraOffset.z
+          + MainCamera.transform.up * CameraOffset.y + MainCamera.transform.right * CameraOffset.x;
+        MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, pos, VelocidadeCamera * Time.deltaTime);
+
+        MainCamera.transform.rotation = Quaternion.Lerp(MainCamera.transform.rotation, transform.rotation, VelocidadeRotacaoCamera * Time.deltaTime);
+
+    }
 }

@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    public float Velocidade;
-    public Animator anim;
-    public float force;
 
+    //movimento
     float InputX;
     float InputZ;
-    Vector3 Direcao;
+    public float Velocidade;
+    public Animator anim;
 
+    //Camera
+    Vector3 Direcao;
     public Camera MainCamera;
 
-    //public float VelocidadeCamera;
-    //public float VelocidadeRotacaoCamera;
-    //public Vector3 CameraOffset;
+    //pulo
+    public float JumpForce;
+    private Rigidbody rb;
+
 
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
 
     void Update()
-    {
+    {      
+        //camera
+        Direcao = new Vector3(InputX, 0, InputZ);
+
         //movimento
         InputX = Input.GetAxis("Horizontal");
         InputZ = Input.GetAxis("Vertical");
-        Direcao = new Vector3(InputX, 0, InputZ);
-        anim.SetFloat("Jumping", 0);
-
-
 
         if (InputX == 0 || InputZ == 0)
         {
@@ -65,19 +66,15 @@ public class Player2 : MonoBehaviour
             }
 
         }
-        if(Input.GetKey(KeyCode.Space))
+
+        //pulo
+        anim.SetBool("Jumping", false);
+
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            transform.Translate(transform.up * force * Time.deltaTime);
-            anim.SetFloat("Jumping", 1);
-
+            rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
+            anim.SetBool("Jumping", true);
         }
-
-        //camera
-        //var pos = transform.position - MainCamera.transform.forward * CameraOffset.z
-        //  + MainCamera.transform.up * CameraOffset.y + MainCamera.transform.right * CameraOffset.x;
-        //MainCamera.transform.position = Vector3.Lerp(MainCamera.transform.position, pos, VelocidadeCamera * Time.deltaTime);
-
-        //MainCamera.transform.rotation = Quaternion.Lerp(MainCamera.transform.rotation, transform.rotation, VelocidadeRotacaoCamera * Time.deltaTime);
 
     }
 }

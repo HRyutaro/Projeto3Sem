@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Life : MonoBehaviour
 {
     public int QLife;
-    
+
 
     void Start()
     {

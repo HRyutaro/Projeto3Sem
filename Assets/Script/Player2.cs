@@ -18,7 +18,7 @@ public class Player2 : MonoBehaviour
     //pulo
     public float JumpForce;
     private Rigidbody rb;
-
+    private bool jumping;
 
     void Start()
     {
@@ -69,12 +69,12 @@ public class Player2 : MonoBehaviour
 
         //pulo
         anim.SetBool("Jumping", false);
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
             anim.SetBool("Jumping", true);
+            jumping = true;
         }
-
+        
     }
 }

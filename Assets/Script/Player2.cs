@@ -67,14 +67,26 @@ public class Player2 : MonoBehaviour
 
         }
 
-        //pulo
-        anim.SetBool("Jumping", false);
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
-            anim.SetBool("Jumping", true);
-            jumping = true;
+            StartCoroutine(jump());
         }
-        
+
+    }
+    //pulo
+    
+    IEnumerator jump()
+    {
+        if (jumping == false)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, JumpForce, rb.velocity.z);
+            anim.SetFloat("Jumping", 1);
+            jumping = true;
+            yield return new WaitForSeconds(1f);
+            anim.SetFloat("Jumping", 0);
+            jumping = false;
+            print(jumping);
+        }
+
     }
 }

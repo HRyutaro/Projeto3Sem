@@ -67,14 +67,14 @@ public class Player2 : MonoBehaviour
 
         }
 
+        //pulo
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartCoroutine(jump());
         }
 
     }
-    //pulo
-    
+    //pulo    
     IEnumerator jump()
     {
         if (jumping == false)

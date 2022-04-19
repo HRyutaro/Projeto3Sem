@@ -12,15 +12,22 @@ public class EnemyGuard : MonoBehaviour
     public bool lockCursor;
 
     //move
-    public NavMeshAgent navMeshAgent;
-    public Transform playerTrasform;
+    private int casaAtual = 0;
+    public Vector3[] casas = new Vector3[2];
+    public Quaternion[] roda = new Quaternion[2];
 
     //animation
     public Animator animator;
 
+
+
     void Start()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        //move
+        transform.position = casas[casaAtual];
+        StartCoroutine(MoviLerp(casas[casaAtual+1],5f));
+
+        //animation
         animator = GetComponent<Animator>();
         animator.SetFloat("Movingfoward", 1);
         
@@ -29,8 +36,7 @@ public class EnemyGuard : MonoBehaviour
 
     void Update()
     {
-        navMeshAgent.SetDestination(playerTrasform.position);
-
+        //vision
         if (OnVision())
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
@@ -38,8 +44,57 @@ public class EnemyGuard : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
+        //move
+      
+    }
+    //movimento
+    IEnumerator MoviLerp(Vector3 targetPosition, float duration)
+    {
+        
+        float time = 0;
+        Vector3 startPosition = transform.position;
+        while (time < duration)
+        {
+            transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.position = targetPosition;
+
+        casaAtual++;
+
+        if(casaAtual == 1)
+        {
+            casaAtual = -1;
+            print("casa");
+        }
+        StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
     }
 
+    IEnumerator MoviRotationLerp(Quaternion targetPosition, float duration)
+    {
+
+        float time = 0;
+        Quaternion startPosition = transform.rotation;
+        while (time < duration)
+        {
+            transform.rotation = Quaternion.Lerp(startPosition, targetPosition, time / duration);
+            time += Time.deltaTime;
+            yield return null;
+        }
+        transform.rotation = targetPosition;
+
+        casaAtual++;
+
+        if (casaAtual == 1)
+        {
+            casaAtual = -1;
+            print("casa");
+        }
+        StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
+    }
+
+    //vision
     bool OnVision()
     {
         Vector3 dir = Target.position - transform.position;

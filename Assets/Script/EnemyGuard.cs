@@ -13,19 +13,22 @@ public class EnemyGuard : MonoBehaviour
 
     //move
     private int casaAtual = 0;
+    private int casaARotation = 0;
     public Vector3[] casas = new Vector3[2];
     public Quaternion[] roda = new Quaternion[2];
+    public int casaFinal;
+    public int casaFinalR;
 
     //animation
     public Animator animator;
-
-
 
     void Start()
     {
         //move
         transform.position = casas[casaAtual];
+        transform.rotation = roda [casaARotation];
         StartCoroutine(MoviLerp(casas[casaAtual+1],5f));
+        
 
         //animation
         animator = GetComponent<Animator>();
@@ -47,6 +50,7 @@ public class EnemyGuard : MonoBehaviour
         //move
       
     }
+
     //movimento
     IEnumerator MoviLerp(Vector3 targetPosition, float duration)
     {
@@ -63,12 +67,13 @@ public class EnemyGuard : MonoBehaviour
 
         casaAtual++;
 
-        if(casaAtual == 1)
+        if(casaAtual == casaFinal)
         {
             casaAtual = -1;
-            print("casa");
+            
         }
-        StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
+        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 1.5f));
+        //StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
     }
 
     IEnumerator MoviRotationLerp(Quaternion targetPosition, float duration)
@@ -84,12 +89,12 @@ public class EnemyGuard : MonoBehaviour
         }
         transform.rotation = targetPosition;
 
-        casaAtual++;
+        casaARotation++;
 
-        if (casaAtual == 1)
+        if (casaARotation == casaFinalR)
         {
-            casaAtual = -1;
-            print("casa");
+            casaARotation = -1;
+            
         }
         StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
     }

@@ -45,7 +45,7 @@ public class Player2 : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                Velocidade = 15;
+                Velocidade = 10;
                 var camrot = MainCamera.transform.rotation;
                 camrot.x = 0;
                 camrot.z = 0;

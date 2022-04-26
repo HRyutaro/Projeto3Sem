@@ -85,7 +85,6 @@ public class Player2 : MonoBehaviour
             yield return new WaitForSeconds(1f);
             anim.SetFloat("Jumping", 0);
             jumping = false;
-            print(jumping);
         }
 
     }

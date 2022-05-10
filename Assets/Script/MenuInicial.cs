@@ -23,7 +23,7 @@ public class MenuInicial : MonoBehaviour
 
     public void SairDoJogo()
     {
-        StartCoroutine("sair");
+        Application.Quit();
     }
 
     IEnumerator trocadecena()
@@ -32,9 +32,4 @@ public class MenuInicial : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 1");
     }
 
-    IEnumerator sair()
-    {
-        yield return new WaitForSeconds(0.25f);
-        Application.Quit();
-    }
 }

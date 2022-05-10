@@ -10,6 +10,7 @@ public class EnemyGuardIdle : MonoBehaviour
     public float distanceMax = 11;
     public bool lockCursor;
     
+
     //animation
     public Animator animator;
 
@@ -18,6 +19,7 @@ public class EnemyGuardIdle : MonoBehaviour
         //animation
         animator = GetComponent<Animator>();
         animator.SetFloat("Movingfoward", 1);
+
     }
 
 
@@ -25,9 +27,8 @@ public class EnemyGuardIdle : MonoBehaviour
     {
         if (OnVision())
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            Player2.gameOver = true;
+            animator.SetBool("DrawSword", true);
         }
     }
 

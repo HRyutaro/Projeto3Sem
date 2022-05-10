@@ -1462,7 +1462,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Target: {fileID: 0}
   visionAngle: 50
-  distanceMax: 11
+  distanceMax: 12
   lockCursor: 0
   casas:
   - {x: 5.51, y: 0.25, z: -82.2}
@@ -1558,7 +1558,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5399189235240122155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007000208, y: 1.6201643, z: 0.0399971}
+  m_LocalPosition: {x: -0.007000208, y: 1.6201643, z: 0.066}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 5577566840608940166}

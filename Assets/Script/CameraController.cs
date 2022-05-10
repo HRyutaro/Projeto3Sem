@@ -5,9 +5,9 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
 
-    public bool lockCursor;
-    public float mouseSensivity = 10;
+    public static bool lockCursor;
     public Transform target;
+    public float mouseSensivity = 10;
     public float distanceFromTarget = 2;
     public Vector2 pitchMinMax = new Vector2(-40, 85);
 
@@ -18,25 +18,47 @@ public class CameraController : MonoBehaviour
     float yaw;
     float pitch;
 
+    //ajuste da parede
+    RaycastHit hit = new RaycastHit();
+    public float ajusteCamera;
+
     void Start()
     {
-        if(lockCursor)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        lockCursor = true;
     }
 
 
     void LateUpdate()
     {
-        yaw += Input.GetAxis("Mouse X") * mouseSensivity;
-        pitch -= Input.GetAxis("Mouse Y") * mouseSensivity;
-        pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+        if(lockCursor == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
-        currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, rotationSmoothtime);
-        transform.eulerAngles = currentRotation;
-        transform.position = target.position - transform.forward * distanceFromTarget;
+        if(lockCursor == false)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        if(lockCursor == true)
+        {
+            yaw += Input.GetAxis("Mouse X") * mouseSensivity;
+            pitch -= Input.GetAxis("Mouse Y") * mouseSensivity;
+            pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);
+
+            currentRotation = Vector3.SmoothDamp(currentRotation, new Vector3(pitch, yaw), ref rotationSmoothVelocity, rotationSmoothtime);
+            transform.eulerAngles = currentRotation;
+            transform.position = target.position - transform.forward * distanceFromTarget;
+
+            //ajuste da parede
+            if(Physics.Linecast(target.position, transform.position, out hit))
+            {
+                transform.position = hit.point + transform.forward * ajusteCamera;
+            }
+
+        }
 
     }
 }

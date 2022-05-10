@@ -30,7 +30,7 @@ public class GameOver : MonoBehaviour
 
     public void SairDoJogo()
     {
-        StartCoroutine("sair");
+        Application.Quit();
     }
 
     IEnumerator trocadecena()
@@ -45,9 +45,7 @@ public class GameOver : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 
-    IEnumerator sair()
-    {
-        yield return new WaitForSeconds(0.25f);
-        Application.Quit();
-    }
+
+
+
 }

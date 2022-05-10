@@ -23,17 +23,24 @@ public class Config : MonoBehaviour
         {
             if(Time.timeScale == 1)
             {
-                Cursor.visible = true;
                 Pause.SetActive(true);
+                CameraController.lockCursor = false;
                 Time.timeScale = 0;
             }
-            else
+            else if(Time.timeScale == 0)
             {
+                CameraController.lockCursor = true;
                 Pause.SetActive(false);
                 Time.timeScale = 1;
-                Cursor.visible = false;
             }
 
         }
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        Pause.SetActive(false);
+        CameraController.lockCursor = true;
     }
 }

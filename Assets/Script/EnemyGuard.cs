@@ -18,6 +18,7 @@ public class EnemyGuard : MonoBehaviour
     public Quaternion[] roda = new Quaternion[2];
     public int casaFinal;
     public int casaFinalR;
+    private bool stop = false;
 
     //animation
     public Animator animator;
@@ -25,14 +26,20 @@ public class EnemyGuard : MonoBehaviour
     void Start()
     {
         //move
+        stop = false;
         transform.position = casas[casaAtual];
         transform.rotation = roda [casaARotation];
-        StartCoroutine(MoviLerp(casas[casaAtual+1],5f));
+        if(stop == false)
+        {
+            StartCoroutine(MoviLerp(casas[casaAtual+1],5f));
+        }
         
 
         //animation
+        {
         animator = GetComponent<Animator>();
         animator.SetFloat("Movingfoward", 1);
+        }
         
     }
 
@@ -42,26 +49,26 @@ public class EnemyGuard : MonoBehaviour
         //vision
         if (OnVision())
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            Player2.gameOver = true;
+            stop = true;
+            animator.SetBool("DrawSword", true);
+            StopAllCoroutines();
+            
         }
-
-        //move
       
     }
 
     //movimento
     IEnumerator MoviLerp(Vector3 targetPosition, float duration)
     {
-        
+
         float time = 0;
         Vector3 startPosition = transform.position;
         while (time < duration)
         {
-            transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
-            time += Time.deltaTime;
-            yield return null;
+                transform.position = Vector3.Lerp(startPosition, targetPosition, time / duration);
+                time += Time.deltaTime;
+                yield return null;           
         }
         transform.position = targetPosition;
 
@@ -72,20 +79,23 @@ public class EnemyGuard : MonoBehaviour
             casaAtual = -1;
             
         }
-        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 1.5f));
-        //StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
+        if (stop == false)
+        {
+            StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 1.5f));
+        }
+
+
     }
 
     IEnumerator MoviRotationLerp(Quaternion targetPosition, float duration)
     {
-
         float time = 0;
         Quaternion startPosition = transform.rotation;
         while (time < duration)
         {
-            transform.rotation = Quaternion.Lerp(startPosition, targetPosition, time / duration);
-            time += Time.deltaTime;
-            yield return null;
+                transform.rotation = Quaternion.Lerp(startPosition, targetPosition, time / duration);
+                time += Time.deltaTime;
+                yield return null;
         }
         transform.rotation = targetPosition;
 
@@ -96,7 +106,10 @@ public class EnemyGuard : MonoBehaviour
             casaARotation = -1;
             
         }
-        StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
+        if(stop == false)
+        {
+            StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
+        }
     }
 
     //vision

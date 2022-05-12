@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Player2 : MonoBehaviour
 {
-    
+    //Vida
+    public static int Vida;
+    public GameObject Vida1;
+    public GameObject Vida2;
+    public GameObject Vida3;
+
+
     //movimento
     float InputX;
     float InputZ;
@@ -22,19 +28,30 @@ public class Player2 : MonoBehaviour
 
     //game over
     public static bool gameOver = false;
-    private bool Stop = false;
+    public static bool Stop = false;
 
     //botao
     public static bool botaoAnim = false;
 
+    //combat
+    public static bool OnCombat;
+    public static bool OffCombat;
+
+
     void Start()
     {
+        Vida = 3;
+        Vida1.SetActive(true);
+        Vida2.SetActive(true);
+        Vida3.SetActive(true);
+
         rb = GetComponent<Rigidbody>();
         gameOver = false;
         Stop = false;
         botaoAnim = false;
-        
-        
+        OnCombat = false;
+    
+
     }
 
 
@@ -86,7 +103,25 @@ public class Player2 : MonoBehaviour
 
         }
 
+        if(Stop == true)
+        {
+            anim.SetFloat("Movingfoward", 0);
+        }
         //gameover
+        if (Vida == 2)
+        {
+            Vida3.SetActive(false);
+        }
+        if (Vida == 1)
+        {
+            Vida2.SetActive(false);
+        }
+        if (Vida == 0)
+        {
+            Vida1.SetActive(false);
+            gameOver = true;
+        }
+
 
         if(gameOver == true)
         {
@@ -99,11 +134,18 @@ public class Player2 : MonoBehaviour
             anim.SetFloat("botao", 1);
         }
 
-        //downStairs
-
+        //Combat
+        if(OnCombat == true)
+        {
+            StartCoroutine(onCombat());
+        }
+        if(OffCombat == true)
+        {
+            StartCoroutine(offCombat());           
+        }
         
     }
-    //pulo    
+
 
 
     //gameOver
@@ -115,6 +157,20 @@ public class Player2 : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+    }
+
+    public IEnumerator onCombat()
+    {
+        Stop = true;
+        yield return new WaitForSeconds(1f);
+        OnCombat = false;
+    }
+
+    public IEnumerator offCombat()
+    {
+        Stop = false;
+        yield return new WaitForSeconds(1f);
+        OffCombat = false;
     }
 
 }

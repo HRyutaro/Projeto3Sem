@@ -30,12 +30,6 @@ public class CameraController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(lockCursor == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-
         if(lockCursor == false)
         {
             Cursor.lockState = CursorLockMode.None;
@@ -44,6 +38,9 @@ public class CameraController : MonoBehaviour
 
         if(lockCursor == true)
         {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+
             yaw += Input.GetAxis("Mouse X") * mouseSensivity;
             pitch -= Input.GetAxis("Mouse Y") * mouseSensivity;
             pitch = Mathf.Clamp(pitch, pitchMinMax.x, pitchMinMax.y);

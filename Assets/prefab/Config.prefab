@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7118340755254902641
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7118340755254902642}
+  - component: {fileID: 7118340755254902643}
+  - component: {fileID: 7118340755254902640}
+  - component: {fileID: 7118340755254902645}
+  m_Layer: 0
+  m_Name: Config
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7118340755254902642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118340755254902641}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.3281465, y: -10.090183, z: 34.766415}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7118340755254902643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118340755254902641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f37d52bb200f6142a0fbb546682288e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GravityMULT: 2
+  Pause: {fileID: 0}
+--- !u!114 &7118340755254902640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118340755254902641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152f39e01c97ca74f9678aa2fffe2a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7118340755254902645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7118340755254902641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ef72757efa6dc949b397b63aebc4715, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HudCombat: {fileID: 0}
+  Posicoes:
+  - {x: 380.2433, y: 238.3613, z: 0}
+  - {x: 671, y: 238.3613, z: 0}
+  - {x: 380.2433, y: 83, z: 0}
+  - {x: 671, y: 83, z: 0}
+  - {x: 1264, y: 238.3613, z: 0}
+  - {x: 1602, y: 238.3613, z: 0}
+  - {x: 1264, y: 83, z: 0}
+  - {x: 1602, y: 83, z: 0}
+  filho: {fileID: 0}
+  BAqua: {fileID: 6371634381364381770, guid: 5e546b790c3e9a746bba4abbde094dda, type: 3}

@@ -6,6 +6,7 @@ public class Enemy2 : MonoBehaviour
 {
     //VidaInimigo
     public static int VidaI;
+    public int VidaInimigo;
 
     //vision
     public Transform Target;
@@ -25,10 +26,17 @@ public class Enemy2 : MonoBehaviour
     //animation
     public Animator animator;
 
+    public bool oncombat;
+
+    public static bool TipoDIFogo;
+    public static bool TipoDIAgua;
+    public static bool TipoDIVento;
+    public static bool TipoDIRaio;
+
     void Start()
     {
         //vida
-        VidaI = 3;
+        VidaI = VidaInimigo;
 
         //move
         stop = false;
@@ -39,31 +47,43 @@ public class Enemy2 : MonoBehaviour
             StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
         }
 
-
         //animation
         {
             animator = GetComponent<Animator>();
             animator.SetFloat("Movingfoward", 1);
         }
 
+        if(CompareTag("InimigoFogo"))
+        {
+            TipoDIFogo = true;
+        }
+        
     }
 
 
     void Update()
     {
         //vision
-        if (OnVision())
+        if(oncombat == false)
         {
-            Player2.OnCombat = true;
-            CombatConfig.HudCombatOn = true;
-            stop = true;
-            animator.SetBool("DrawSword", true);
-            StopAllCoroutines();
+            if (OnVision())
+            {
+
+                Player2.OnCombat = true;
+                CombatConfig.HudCombatOn = true;
+                stop = true;
+                animator.SetBool("DrawSword", true);
+                StopAllCoroutines();
+
+                transform.LookAt(Target.position);
+                oncombat = true;
+            }
 
         }
 
+
         //Combat
-        if (VidaI == 0)
+        if (VidaI <= 0)
         {
             CombatConfig.HudCombatOff = true;
             Player2.OffCombat = true;

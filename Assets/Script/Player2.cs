@@ -37,6 +37,7 @@ public class Player2 : MonoBehaviour
     public static bool OnCombat;
     public static bool OffCombat;
 
+    private GameObject inimigo;
 
     void Start()
     {
@@ -50,7 +51,7 @@ public class Player2 : MonoBehaviour
         Stop = false;
         botaoAnim = false;
         OnCombat = false;
-    
+        inimigo = GameObject.FindWithTag("Guardfoco");
 
     }
 
@@ -161,6 +162,8 @@ public class Player2 : MonoBehaviour
 
     public IEnumerator onCombat()
     {
+        transform.LookAt(inimigo.transform.position);
+        
         Stop = true;
         yield return new WaitForSeconds(1f);
         OnCombat = false;

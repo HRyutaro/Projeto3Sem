@@ -73,13 +73,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HudCombat: {fileID: 0}
   Posicoes:
-  - {x: 380.2433, y: 238.3613, z: 0}
-  - {x: 671, y: 238.3613, z: 0}
-  - {x: 380.2433, y: 83, z: 0}
-  - {x: 671, y: 83, z: 0}
-  - {x: 1264, y: 238.3613, z: 0}
-  - {x: 1602, y: 238.3613, z: 0}
-  - {x: 1264, y: 83, z: 0}
-  - {x: 1602, y: 83, z: 0}
-  filho: {fileID: 0}
-  BAqua: {fileID: 6371634381364381770, guid: 5e546b790c3e9a746bba4abbde094dda, type: 3}
+  - {x: 321, y: 271, z: 0}
+  - {x: 713, y: 271, z: 0}
+  - {x: 306, y: 85, z: 0}
+  - {x: 718, y: 85, z: 0}
+  - {x: 1336, y: 258, z: 0}
+  - {x: 1685, y: 258, z: 0}
+  - {x: 1354, y: 77, z: 0}
+  - {x: 1666, y: 77, z: 0}
+  PosicaoN: {fileID: 0}
+  PosicaoN1: {fileID: 0}
+  PosicaoN2: {fileID: 0}
+  PosicaoN3: {fileID: 0}
+  PosicaoN4: {fileID: 0}
+  PosicaoN5: {fileID: 0}
+  PosicaoN6: {fileID: 0}
+  PosicaoN7: {fileID: 0}

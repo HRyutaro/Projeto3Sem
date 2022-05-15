@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Guard
+  - Guardfoco
+  - InimigoFogo
+  - InimigoAgua
+  - InimigoVento
+  - InimigoRaio
   layers:
   - Default
   - TransparentFX

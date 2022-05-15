@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class MenuInicial : MonoBehaviour
 {
+    public static int faseAtual;
+    public GameObject continuar; 
     void Start()
     {
-
+        if (faseAtual > 1)
+        {
+            continuar.SetActive(true);
+        }
     }
 
     void Update()
@@ -14,10 +19,20 @@ public class MenuInicial : MonoBehaviour
 
     }
 
-    public void ChamaCenaDoJogo()
+    public void Continuar()
+    {
+        if (faseAtual == 2)
+        {
+            StartCoroutine("fase2");
+        }
+    }
+
+
+    public void NovoJogo()
     {
 
-        StartCoroutine("trocadecena");
+        StartCoroutine("fase1");
+        GameOver.faseAtual = 1;
         Time.timeScale = 1;
     }
 
@@ -26,10 +41,16 @@ public class MenuInicial : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator trocadecena()
+    IEnumerator fase1()
     {
         yield return new WaitForSeconds(0.25f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 1");
+    }
+
+    IEnumerator fase2()
+    {
+        yield return new WaitForSeconds(0.25f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 2");
     }
 
 }

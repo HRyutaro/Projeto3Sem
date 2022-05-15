@@ -22,9 +22,11 @@ public class CameraController : MonoBehaviour
     RaycastHit hit = new RaycastHit();
     public float ajusteCamera;
 
+
     void Start()
     {
         lockCursor = true;
+
     }
 
 
@@ -34,6 +36,7 @@ public class CameraController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            
         }
 
         if(lockCursor == true)

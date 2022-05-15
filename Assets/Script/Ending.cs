@@ -36,6 +36,7 @@ public class Ending : MonoBehaviour
         yield return new WaitForSeconds(3f);
         PlayerRun.SetActive(false);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase2");
+        GameOver.faseAtual = 2;
 
     }
 }

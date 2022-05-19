@@ -154,10 +154,9 @@ public class Player2 : MonoBehaviour
     {
         Stop = true;
         anim.SetBool("GameOver", true);
+        CameraController.lockCursor = false;
         yield return new WaitForSeconds(2f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
     }
 
     public IEnumerator onCombat()

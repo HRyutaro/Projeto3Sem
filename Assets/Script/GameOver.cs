@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-   public static int faseAtual;
 
    void Start()
     {
@@ -19,13 +18,15 @@ public class GameOver : MonoBehaviour
 
     public void joguedenovo()
     {
-        if(faseAtual == 1)
+        if(MenuInicial.faseAtual == 1)
         {
+            CameraController.lockCursor = true;
             StartCoroutine("fase1");
             Time.timeScale = 1;
         }
-        if(faseAtual == 2)
+        if(MenuInicial.faseAtual == 2)
         {
+            CameraController.lockCursor = true;
             StartCoroutine("fase2");
             Time.timeScale = 1;
         }

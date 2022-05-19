@@ -33,10 +33,10 @@ public class Ending : MonoBehaviour
     {
         PlayerRun.SetActive(true);
         Player.SetActive(false);
+        MenuInicial.faseAtual = 2;
         yield return new WaitForSeconds(3f);
         PlayerRun.SetActive(false);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Fase2");
-        GameOver.faseAtual = 2;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 2");
 
     }
 }

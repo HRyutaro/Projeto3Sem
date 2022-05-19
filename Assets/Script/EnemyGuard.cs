@@ -22,6 +22,7 @@ public class EnemyGuard : MonoBehaviour
 
     //animation
     public Animator animator;
+    public GameObject espada;
 
     void Start()
     {
@@ -37,10 +38,11 @@ public class EnemyGuard : MonoBehaviour
 
         //animation
         {
-        animator = GetComponent<Animator>();
-        animator.SetFloat("Movingfoward", 1);
+            animator = GetComponent<Animator>();
+            animator.SetFloat("Movingfoward", 1);
         }
-        
+
+        espada.SetActive(false);
     }
 
 
@@ -51,6 +53,7 @@ public class EnemyGuard : MonoBehaviour
         {
             Player2.gameOver = true;
             stop = true;
+            espada.SetActive(true);
             animator.SetBool("DrawSword", true);
             StopAllCoroutines();
             

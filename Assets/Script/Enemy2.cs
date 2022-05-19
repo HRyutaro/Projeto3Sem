@@ -7,6 +7,10 @@ public class Enemy2 : MonoBehaviour
     //VidaInimigo
     public static int VidaI;
     public int VidaInimigo;
+    public  GameObject VHp;
+    public  GameObject VHp1;
+    public  GameObject VHp2;
+    public  GameObject VHp3;
 
     //vision
     public Transform Target;
@@ -37,6 +41,10 @@ public class Enemy2 : MonoBehaviour
     {
         //vida
         VidaI = VidaInimigo;
+        VHp.SetActive(false);
+        VHp1.SetActive(false);
+        VHp2.SetActive(false);
+        VHp3.SetActive(false);
 
         //move
         stop = false;
@@ -57,7 +65,18 @@ public class Enemy2 : MonoBehaviour
         {
             TipoDIFogo = true;
         }
-        
+        else if(CompareTag("InimigoVento"))
+        {
+            TipoDIVento = true;
+        }
+        else if(CompareTag("InimigoRaio"))
+        {
+            TipoDIRaio = true;
+        }
+        else if (CompareTag("InimigoAgua"))
+        {
+            TipoDIAgua = true;
+        }
     }
 
 
@@ -71,6 +90,11 @@ public class Enemy2 : MonoBehaviour
 
                 Player2.OnCombat = true;
                 CombatConfig.HudCombatOn = true;
+                VHp.SetActive(true);
+                VHp1.SetActive(true);
+                VHp2.SetActive(true);
+                VHp3.SetActive(true);
+
                 stop = true;
                 animator.SetBool("DrawSword", true);
                 StopAllCoroutines();
@@ -83,11 +107,30 @@ public class Enemy2 : MonoBehaviour
 
 
         //Combat
+        if (VidaI == 3)
+        {
+            VHp3.SetActive(false);
+        }
+        if (VidaI == 2)
+        {
+            VHp2.SetActive(false);
+            VHp3.SetActive(false);
+        }
+        if (VidaI == 1)
+        {
+            VHp1.SetActive(false);
+            VHp2.SetActive(false);
+            VHp3.SetActive(false);
+        }
         if (VidaI <= 0)
         {
             CombatConfig.HudCombatOff = true;
             Player2.OffCombat = true;
             Destroy(gameObject, 0.3f);
+            VHp.SetActive(false);
+            VHp1.SetActive(false);
+            VHp2.SetActive(false);
+            VHp3.SetActive(false);
         }
 
     }

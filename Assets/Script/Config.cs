@@ -40,9 +40,9 @@ public class Config : MonoBehaviour
     //Botões
     public void Resume()
     {
+        CameraController.lockCursor = true;
         Time.timeScale = 1;
         Pause.SetActive(false);
-        CameraController.lockCursor = true;
     }
     
 }

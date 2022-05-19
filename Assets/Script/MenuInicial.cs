@@ -32,7 +32,7 @@ public class MenuInicial : MonoBehaviour
     {
 
         StartCoroutine("fase1");
-        GameOver.faseAtual = 1;
+        faseAtual = 1;
         Time.timeScale = 1;
     }
 

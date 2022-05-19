@@ -55,7 +55,6 @@ public class CombatConfig : MonoBehaviour
         danoI.SetActive(false);
         danoIV.SetActive(false);
         danoPlayer.SetActive(false);
-
     }
 
     void Update()
@@ -69,6 +68,7 @@ public class CombatConfig : MonoBehaviour
         if(HudCombatOff == true)
         {
             StartCoroutine(HideHudcombat());
+
         }
     }
 
@@ -78,6 +78,7 @@ public class CombatConfig : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         HudCombat.SetActive(false);
         Player2.Stop = false;
+        HudCombatOff = false;
     }
     public IEnumerator ShowHudcombat()
     {

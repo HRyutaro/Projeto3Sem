@@ -16,18 +16,22 @@ public class Botao : MonoBehaviour
     {
         
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (BotaoMovimento.apertou == false)
         {
-            BotaoMovimento.podeApertar = true;
-            Text.SetActive(true);
+            if(other.gameObject.CompareTag("Player"))
+            {
+                BotaoMovimento.podeApertar = true;
+                Text.SetActive(true);
+            }
         }
 
     }
     private void OnTriggerExit(Collider other)
     {
+
         Text.SetActive(false);
     }
 

@@ -20,14 +20,16 @@ public class Botao2 : MonoBehaviour
 
     void Update()
     {
-        if(podeApertar == true)
+        if(jaApertou == false)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if(podeApertar == true)
             {
-                StartCoroutine(Buttonpush());
-                jaApertou = true;
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StartCoroutine(Buttonpush());
+                    jaApertou = true;
+                }
             }
-
         }
     }
     IEnumerator Buttonpush()
@@ -43,13 +45,14 @@ public class Botao2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+
         if(jaApertou == false)
         {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            podeApertar = true;
-            Text.SetActive(true);
-        }
+            if (other.gameObject.CompareTag("Player"))
+            {
+                podeApertar = true;
+                Text.SetActive(true);
+            }
 
         }
 
@@ -59,9 +62,8 @@ public class Botao2 : MonoBehaviour
     {
         if(jaApertou == false)
         {
-        podeApertar = false;
-        Text.SetActive(false);
-
+            podeApertar = false;
         }
+        Text.SetActive(false);
     }
 }

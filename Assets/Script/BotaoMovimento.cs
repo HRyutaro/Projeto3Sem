@@ -8,6 +8,7 @@ public class BotaoMovimento : MonoBehaviour
     public Vector3[] casas = new Vector3[2];
     public int casaFinal;
     public static bool podeApertar;
+    public static bool apertou;
 
     public GameObject Player;
     public GameObject PlayerButton;
@@ -16,6 +17,7 @@ public class BotaoMovimento : MonoBehaviour
     {
         podeApertar = false;
         transform.position = casas[casaAtual];
+        apertou = false;
     }
 
 
@@ -24,10 +26,14 @@ public class BotaoMovimento : MonoBehaviour
        
         if (podeApertar == true)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (apertou == false)
             {
-                StartCoroutine(Buttonpush());
-                
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    StartCoroutine(Buttonpush());
+                    apertou = true;
+                }
+
             }
         }
     }

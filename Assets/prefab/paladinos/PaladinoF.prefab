@@ -1496,6 +1496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VidaInimigo: 4
+  VidaTotal: 4
   VHp:
   - {fileID: 0}
   - {fileID: 0}

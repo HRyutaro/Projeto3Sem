@@ -161,8 +161,6 @@ public class Player2 : MonoBehaviour
 
     public IEnumerator onCombat()
     {
-        transform.LookAt(inimigo.transform.position);
-        
         Stop = true;
         yield return new WaitForSeconds(1f);
         OnCombat = false;

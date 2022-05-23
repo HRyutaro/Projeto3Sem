@@ -1496,7 +1496,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VidaInimigo: 4
-  VidaTotal: 4
   VHp:
   - {fileID: 0}
   - {fileID: 0}
@@ -1504,7 +1503,7 @@ MonoBehaviour:
   - {fileID: 0}
   Target: {fileID: 0}
   visionAngle: 50
-  distanceMax: 25
+  distanceMax: 12
   lockCursor: 0
   casas:
   - {x: 0, y: 0, z: 0}

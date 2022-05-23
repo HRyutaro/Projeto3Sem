@@ -30,6 +30,8 @@ public class CombatConfig : MonoBehaviour
     public GameObject danoI;
     public GameObject danoIV;
     public GameObject danoPlayer;
+    public GameObject AreaAtaque;
+    bool Vantagem;
 
     //simbulos hudcombat
 
@@ -43,7 +45,9 @@ public class CombatConfig : MonoBehaviour
     public GameObject voltar1;
     public GameObject voltar2;
 
-    bool Vantagem;
+    //vida inimigo
+    public GameObject[] VHp = new GameObject[4];
+
 
     void Start()
     {
@@ -55,6 +59,13 @@ public class CombatConfig : MonoBehaviour
         danoI.SetActive(false);
         danoIV.SetActive(false);
         danoPlayer.SetActive(false);
+        AreaAtaque.SetActive(false);
+
+        //vida Inimigo
+        VHp[0].SetActive(false);
+        VHp[1].SetActive(false);
+        VHp[2].SetActive(false);
+        VHp[3].SetActive(false);
     }
 
     void Update()
@@ -70,6 +81,34 @@ public class CombatConfig : MonoBehaviour
             StartCoroutine(HideHudcombat());
 
         }
+
+        //Combat
+        if (Enemy2.VidaI == 3)
+        {
+            VHp[3].SetActive(false);
+        }
+        if (Enemy2.VidaI == 2)
+        {
+
+            VHp[2].SetActive(false);
+            VHp[3].SetActive(false);
+        }
+        if (Enemy2.VidaI == 1)
+        {
+            VHp[1].SetActive(false);
+            VHp[2].SetActive(false);
+            VHp[3].SetActive(false);
+        }
+        if (Enemy2.VidaI <= 0)
+        {
+            HudCombatOff = true;
+            Player2.OffCombat = true;
+            VHp[0].SetActive(false);
+            VHp[1].SetActive(false);
+            VHp[2].SetActive(false);
+            VHp[3].SetActive(false);
+        }
+
     }
 
     public IEnumerator HideHudcombat()
@@ -88,6 +127,12 @@ public class CombatConfig : MonoBehaviour
         gota.SetActive(true);
         fogoS.SetActive(true);
         proxP.SetActive(true);
+
+        //VidaInimigo
+        VHp[0].SetActive(true);
+        VHp[1].SetActive(true);
+        VHp[2].SetActive(true);
+        VHp[3].SetActive(true);
 
     }
 
@@ -886,21 +931,30 @@ public class CombatConfig : MonoBehaviour
     public void Acertou()
     {
         if(Vantagem == true)
+        {
+            Enemy2.VidaI -= 2;
+            danoI.SetActive(false);
+            danoIV.SetActive(true);
+            danoPlayer.SetActive(false);
+            print("Acertou.com vantagem Vida " + Enemy2.VidaI);
+            if(Enemy2.VidaI <= 0)
             {
-                Enemy2.VidaI -= 2;
-                danoI.SetActive(false);
-                danoIV.SetActive(true);
-                danoPlayer.SetActive(false);
-                print("Acertou.com vantagem Vida " + Enemy2.VidaI);
+                StartCoroutine("AtivarArea");
             }
+        }
         else if(Vantagem == false)
+        {
+            Enemy2.VidaI -= 1;
+            danoI.SetActive(true);
+            danoIV.SetActive(false);
+            danoPlayer.SetActive(false);
+            print("Acertou.sem vantagem Vida " + Enemy2.VidaI);
+            if (Enemy2.VidaI <= 0)
             {
-                Enemy2.VidaI --;
-                danoI.SetActive(true);
-                danoIV.SetActive(false);
-                danoPlayer.SetActive(false);
-                print("Acertou.sem vantagem Vida " + Enemy2.VidaI);
+                StartCoroutine("AtivarArea");
             }
+        }
+
         if(pagA == true)
         {
             random();
@@ -925,6 +979,14 @@ public class CombatConfig : MonoBehaviour
         danoI.SetActive(false);
         danoIV.SetActive(false);
         danoPlayer.SetActive(true);
+        Enemy2.atacandoI = true;
         print("Errou. Vida " + Player2.Vida);
+    }
+
+    IEnumerator AtivarArea()
+    {
+        AreaAtaque.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        AreaAtaque.SetActive(false);
     }
 }

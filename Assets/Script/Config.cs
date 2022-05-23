@@ -35,6 +35,7 @@ public class Config : MonoBehaviour
             }
 
         }
+
     }
 
     //Botões

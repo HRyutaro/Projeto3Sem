@@ -7,7 +7,7 @@ public class Enemy2 : MonoBehaviour
     //VidaInimigo
     public static int VidaI;
     public int VidaInimigo;
-    public GameObject[] VHp = new GameObject[4];
+    
 
     //vision
     public Transform Target;
@@ -27,6 +27,7 @@ public class Enemy2 : MonoBehaviour
     //animation
     public Animator animator;
     public GameObject espada;
+    public static bool atacandoI;
 
     public bool oncombat;
 
@@ -35,14 +36,12 @@ public class Enemy2 : MonoBehaviour
     public static bool TipoDIVento;
     public static bool TipoDIRaio;
 
+    public GameObject player;
+
     void Start()
     {
         //vida
         VidaI = VidaInimigo;
-        VHp[0].SetActive(false);
-        VHp[1].SetActive(false);
-        VHp[2].SetActive(false);
-        VHp[3].SetActive(false);
 
 
         //move
@@ -83,60 +82,33 @@ public class Enemy2 : MonoBehaviour
 
     void Update()
     {
+        
         //vision
         if(oncombat == false)
         {
             if (OnVision())
             {
 
-                Player2.OnCombat = true;
-                CombatConfig.HudCombatOn = true;
+                olhar();
+                hudcombaton();
                 
                 espada.SetActive(true);
-                VHp[0].SetActive(false);
-                VHp[1].SetActive(false);
-                VHp[2].SetActive(false);
-                VHp[3].SetActive(false);
 
                 stop = true;
                 animator.SetBool("DrawSword", true);
                 StopAllCoroutines();
 
-                transform.LookAt(Target.position);
                 oncombat = true;
             }
 
         }
 
+        if (atacandoI == true)
+        {
+            animator.SetBool("ataque", true);
+            
 
-        //Combat
-        if (VidaI == 3)
-        {
-            VHp[3].SetActive(false);
         }
-        if (VidaI == 2)
-        {
-
-            VHp[2].SetActive(false);
-            VHp[3].SetActive(false);
-        }
-        if (VidaI == 1)
-        {
-            VHp[1].SetActive(false);
-            VHp[2].SetActive(false);
-            VHp[3].SetActive(false);
-        }
-        if (VidaI <= 0)
-        {
-            CombatConfig.HudCombatOff = true;
-            Player2.OffCombat = true;
-            Destroy(gameObject, 0.3f);
-            VHp[0].SetActive(false);
-            VHp[1].SetActive(false);
-            VHp[2].SetActive(false);
-            VHp[3].SetActive(false);
-        }
-
     }
 
     //movimento
@@ -170,6 +142,7 @@ public class Enemy2 : MonoBehaviour
 
     IEnumerator MoviRotationLerp(Quaternion targetPosition, float duration)
     {
+        animator.SetFloat("turn", 1);
         float time = 0;
         Quaternion startPosition = transform.rotation;
         while (time < duration)
@@ -191,6 +164,7 @@ public class Enemy2 : MonoBehaviour
         {
             StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
         }
+        animator.SetFloat("turn", 0);
     }
 
     //vision
@@ -227,4 +201,30 @@ public class Enemy2 : MonoBehaviour
         }
     }
 
+    IEnumerator animAtaque()
+    {
+        animator.SetBool("ataque", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetBool("ataque", false);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == "AreaAtaque")
+        {
+            Destroy(gameObject, 0.5f);
+        }
+    }
+
+    void olhar()
+    {
+        transform.LookAt(player.transform.position);
+        player.transform.LookAt(gameObject.transform.position);
+    }
+
+    void hudcombaton()
+    {
+        Player2.OnCombat = true;
+        CombatConfig.HudCombatOn = true;
+    }
 }

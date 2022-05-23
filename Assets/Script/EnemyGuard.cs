@@ -92,6 +92,7 @@ public class EnemyGuard : MonoBehaviour
 
     IEnumerator MoviRotationLerp(Quaternion targetPosition, float duration)
     {
+        animator.SetFloat("turn", 1);
         float time = 0;
         Quaternion startPosition = transform.rotation;
         while (time < duration)
@@ -101,6 +102,7 @@ public class EnemyGuard : MonoBehaviour
                 yield return null;
         }
         transform.rotation = targetPosition;
+
 
         casaARotation++;
 
@@ -113,6 +115,7 @@ public class EnemyGuard : MonoBehaviour
         {
             StartCoroutine(MoviLerp(casas[casaAtual + 1], 5f));
         }
+        animator.SetFloat("turn", 0);
     }
 
     //vision

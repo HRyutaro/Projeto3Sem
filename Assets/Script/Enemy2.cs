@@ -5,9 +5,7 @@ using UnityEngine;
 public class Enemy2 : MonoBehaviour
 {
     //VidaInimigo
-    public static int VidaI;
     public int VidaInimigo;
-    
 
     //vision
     public Transform Target;
@@ -29,20 +27,18 @@ public class Enemy2 : MonoBehaviour
     public GameObject espada;
     public static bool atacandoI;
 
-    public bool oncombat;
+    //Sound
+    //public AudioSource somPasso;
 
-    public static bool TipoDIFogo;
-    public static bool TipoDIAgua;
-    public static bool TipoDIVento;
-    public static bool TipoDIRaio;
+    public bool oncombat;
 
     public GameObject player;
 
+    public static bool DeuDano;
+    public static bool DeuDano2;
+
     void Start()
     {
-        //vida
-        VidaI = VidaInimigo;
-
 
         //move
         stop = false;
@@ -60,54 +56,50 @@ public class Enemy2 : MonoBehaviour
             espada.SetActive(false);
         }
 
-        if(CompareTag("InimigoFogo"))
-        {
-            TipoDIFogo = true;
-        }
-        else if(CompareTag("InimigoVento"))
-        {
-            TipoDIVento = true;
-        }
-        else if(CompareTag("InimigoRaio"))
-        {
-            TipoDIRaio = true;
-        }
-        else if (CompareTag("InimigoAgua"))
-        {
-            TipoDIAgua = true;
-        }
-
     }
 
 
     void Update()
     {
-        
+
         //vision
-        if(oncombat == false)
+        if (oncombat == false)
         {
             if (OnVision())
             {
 
                 olhar();
                 hudcombaton();
-                
+
                 espada.SetActive(true);
 
                 stop = true;
-                animator.SetBool("DrawSword", true);
                 StopAllCoroutines();
+                StartCoroutine("animCombatidle");
+                
 
                 oncombat = true;
             }
 
         }
 
+        //animataque
         if (atacandoI == true)
         {
-            animator.SetBool("ataque", true);
-            
+            StartCoroutine("animAtaque");
+            atacandoI = false;
+        }
 
+        //dano
+        if (DeuDano == true)
+        {
+            Dano(1);
+            StartCoroutine("ReceberDano");
+        }
+        if (DeuDano2 == true)
+        {
+            Dano(2);
+            StartCoroutine("ReceberDano");
         }
     }
 
@@ -200,19 +192,42 @@ public class Enemy2 : MonoBehaviour
             return false;
         }
     }
-
+    
+    //animação combat
     IEnumerator animAtaque()
     {
-        animator.SetBool("ataque", true);
+        animator.SetBool("Ataque",true);
         yield return new WaitForSeconds(1f);
-        animator.SetBool("ataque", false);
+        animator.SetBool("Ataque",false);
+    }
+    IEnumerator animCombatidle()
+    {
+        animator.SetBool("DrawSword", true);
+        yield return new WaitForSeconds(1f);
+        animator.SetFloat("Movingfoward", 0);
+        animator.SetBool("DrawSword", false);
+
+    }
+    IEnumerator ReceberDano()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("ReceberDano");
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("ReceberDano");
+    }
+    IEnumerator Morte()
+    {
+        yield return new WaitForSeconds(1f);
+        animator.SetTrigger("Morte");
     }
 
+    //combat
     void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "AreaAtaque")
+        if (other.tag == "AreaAtaque")
         {
-            Destroy(gameObject, 0.5f);
+            StartCoroutine("Morte");
+            Destroy(gameObject, 5f);
         }
     }
 
@@ -226,5 +241,20 @@ public class Enemy2 : MonoBehaviour
     {
         Player2.OnCombat = true;
         CombatConfig.HudCombatOn = true;
+    }
+
+    void Dano(int x)
+    {
+        if (x == 1)
+        {
+            VidaInimigo -= 1;
+            DeuDano = false;
+        }
+        if (x == 2)
+        {
+            VidaInimigo -= 2;
+            DeuDano2 = false;
+        }
+
     }
 }

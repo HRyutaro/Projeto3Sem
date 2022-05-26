@@ -38,9 +38,17 @@ public class Player2 : MonoBehaviour
     public static bool OffCombat;
 
     private GameObject inimigo;
+    //Anim Combat
+    public static bool Ataque;
+    public static bool Hit;
+
+    //som
+    public AudioSource[] somPasso;
 
     void Start()
     {
+        MenuInicial.faseAtual = 2;
+
         Vida = 3;
         Vida1.SetActive(true);
         Vida2.SetActive(true);
@@ -69,15 +77,15 @@ public class Player2 : MonoBehaviour
         {
 
             if (InputX == 0 || InputZ == 0)
-        {
+            {
             anim.SetFloat("Movingfoward", 0);
             Velocidade = 5;
-        }
+            }
 
             if (InputX != 0 || InputZ != 0)
-        {
-            if (Input.GetKey(KeyCode.LeftShift))
             {
+                if (Input.GetKey(KeyCode.LeftShift))
+                {
                 Velocidade = 10;
                 var camrot = MainCamera.transform.rotation;
                 camrot.x = 0;
@@ -86,9 +94,10 @@ public class Player2 : MonoBehaviour
                 transform.Translate(0, 0, Time.deltaTime * Velocidade);
                 anim.SetFloat("Movingfoward", 2);
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
-            }
-            else
-            {
+                }
+
+                else
+                {
                 var camrot = MainCamera.transform.rotation;
                 camrot.x = 0;
                 camrot.z = 0;
@@ -96,11 +105,10 @@ public class Player2 : MonoBehaviour
                 transform.Translate(0, 0, Time.deltaTime * Velocidade);
                 anim.SetFloat("Movingfoward", 1);
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
+                }
+
             }
 
-        }
-
-            //pulo
 
         }
 
@@ -145,22 +153,51 @@ public class Player2 : MonoBehaviour
             StartCoroutine(offCombat());           
         }
         
+        //animCombat
+        if(Ataque == true)
+        {
+            StartCoroutine("AnimAtaque");
+            Ataque = false;
+        }
+
+        if(Hit == true)
+        {
+            StartCoroutine("AnimHit");
+            Hit = false;
+        }
+
     }
 
-
+    //som
+    public void Passo()
+    {
+        if (!somPasso[0].isPlaying)
+            somPasso[0].Play();
+        else
+            somPasso[1].Play();
+    }
 
     //gameOver
     public IEnumerator FimdeJogo()
     {
         Stop = true;
-        anim.SetBool("GameOver", true);
+        if(MenuInicial.faseAtual == 2)
+        {
+            anim.SetBool("GameOver2", true);
+        }
+        else
+        {
+            anim.SetBool("GameOver", true);
+        }
         CameraController.lockCursor = false;
         yield return new WaitForSeconds(2f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        
     }
 
     public IEnumerator onCombat()
     {
+        anim.SetBool("Battle", true);
         Stop = true;
         yield return new WaitForSeconds(1f);
         OnCombat = false;
@@ -168,9 +205,26 @@ public class Player2 : MonoBehaviour
 
     public IEnumerator offCombat()
     {
+        anim.SetBool("Battle", false);
         Stop = false;
         yield return new WaitForSeconds(1f);
         OffCombat = false;
     }
+
+    IEnumerator AnimAtaque()
+    {
+        anim.SetBool("Ataque1",true);
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("Ataque1",false);
+        
+    }
+
+    IEnumerator AnimHit()
+    {
+        anim.SetBool("TomandoHit", true);
+        yield return new WaitForSeconds(1.5f);
+        anim.SetBool("TomandoHit", false);
+    }
+
 
 }

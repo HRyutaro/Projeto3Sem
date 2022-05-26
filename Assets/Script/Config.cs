@@ -29,8 +29,8 @@ public class Config : MonoBehaviour
             }
             else if(Time.timeScale == 0)
             {
-                CameraController.lockCursor = true;
                 Pause.SetActive(false);
+                CameraController.lockCursor = true;
                 Time.timeScale = 1;
             }
 

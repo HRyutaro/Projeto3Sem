@@ -47,6 +47,7 @@ public class CombatConfig : MonoBehaviour
 
     //vida inimigo
     public GameObject[] VHp = new GameObject[4];
+    int VidaI;
 
 
     void Start()
@@ -72,37 +73,31 @@ public class CombatConfig : MonoBehaviour
     {
         if (HudCombatOn == true)
         {
-            StartCoroutine(ShowHudcombat());
+            ShowHudcombat();
             HudCombatOn = false;
         }
 
-        if(HudCombatOff == true)
-        {
-            StartCoroutine(HideHudcombat());
-
-        }
-
         //Combat
-        if (Enemy2.VidaI == 3)
+        if (VidaI == 3)
         {
             VHp[3].SetActive(false);
         }
-        if (Enemy2.VidaI == 2)
+        if (VidaI == 2)
         {
 
             VHp[2].SetActive(false);
             VHp[3].SetActive(false);
         }
-        if (Enemy2.VidaI == 1)
+        if (VidaI == 1)
         {
             VHp[1].SetActive(false);
             VHp[2].SetActive(false);
             VHp[3].SetActive(false);
         }
-        if (Enemy2.VidaI <= 0)
+        if (VidaI <= 0)
         {
             HudCombatOff = true;
-            Player2.OffCombat = true;
+            
             VHp[0].SetActive(false);
             VHp[1].SetActive(false);
             VHp[2].SetActive(false);
@@ -111,18 +106,77 @@ public class CombatConfig : MonoBehaviour
 
     }
 
-    public IEnumerator HideHudcombat()
+    void HideHudcombat()
     {
+        
         CameraController.lockCursor = true;
-        yield return new WaitForSeconds(0.25f);
         HudCombat.SetActive(false);
         Player2.Stop = false;
-        HudCombatOff = false;
+        HudCombatOn = false;
+
+        voltar1.SetActive(false);
+        voltar2.SetActive(false);
+
+        //palavra agua
+        Agua[0].SetActive(false);
+        Agua[1].SetActive(false);
+        Agua[2].SetActive(false);
+        Agua[3].SetActive(false);
+        Agua[4].SetActive(false);
+        Agua[5].SetActive(false);
+        Agua[6].SetActive(false);
+        Agua[7].SetActive(false);
+
+        //palavra fogo
+        fogo[0].SetActive(false);
+        fogo[1].SetActive(false);
+        fogo[2].SetActive(false);
+        fogo[3].SetActive(false);
+        fogo[4].SetActive(false);
+        fogo[5].SetActive(false);
+        fogo[6].SetActive(false);
+        fogo[7].SetActive(false);
+
+        //palavra Vento
+        Vento[0].SetActive(false);
+        Vento[1].SetActive(false);
+        Vento[2].SetActive(false);
+        Vento[3].SetActive(false);
+        Vento[4].SetActive(false);
+        Vento[5].SetActive(false);
+        Vento[6].SetActive(false);
+        Vento[7].SetActive(false);
+
+        //Palavra Raio
+        Raio[0].SetActive(false);
+        Raio[1].SetActive(false);
+        Raio[2].SetActive(false);
+        Raio[3].SetActive(false);
+        Raio[4].SetActive(false);
+        Raio[5].SetActive(false);
+        Raio[6].SetActive(false);
+        Raio[7].SetActive(false);
+
+        danoI.SetActive(false);
+        danoIV.SetActive(false);
+        danoPlayer.SetActive(false);
+
+        gota.SetActive(false);
+        fogoS.SetActive(false);
+        VentoS.SetActive(false);
+        raioS.SetActive(false);
+        proxP.SetActive(false);
+        anteP.SetActive(false);
+        Vantagem = false;
+        pagF = false;
+        pagA = false;
+        pagV = false;
+        pagR = false;
     }
-    public IEnumerator ShowHudcombat()
+    void ShowHudcombat()
     {
+        Player2.Stop = true;
         CameraController.lockCursor = false;
-        yield return new WaitForSeconds(0.25f);
         HudCombat.SetActive(true);
         gota.SetActive(true);
         fogoS.SetActive(true);
@@ -133,6 +187,8 @@ public class CombatConfig : MonoBehaviour
         VHp[1].SetActive(true);
         VHp[2].SetActive(true);
         VHp[3].SetActive(true);
+
+        VidaI = 4;
 
     }
 
@@ -861,7 +917,7 @@ public class CombatConfig : MonoBehaviour
 
         voltar2.SetActive(true);
         pagR = true;
-        if (Enemy2.TipoDIAgua == true)
+        if (DetectorDeVantagem.TipoDIAgua == true)
         {
             Vantagem = true;
         }
@@ -882,7 +938,7 @@ public class CombatConfig : MonoBehaviour
         randomV();
         pagV = true;
 
-        if (Enemy2.TipoDIRaio == true)
+        if (DetectorDeVantagem.TipoDIRaio == true)
         {
             Vantagem = true;
         }
@@ -900,7 +956,7 @@ public class CombatConfig : MonoBehaviour
         voltar1.SetActive(true);
         randomF();
         pagF = true;
-        if (Enemy2.TipoDIVento == true)
+        if (DetectorDeVantagem.TipoDIVento == true)
         {
             Vantagem = true;
         }
@@ -918,7 +974,7 @@ public class CombatConfig : MonoBehaviour
         voltar1.SetActive(true);
         random();
         pagA = true;
-        if(Enemy2.TipoDIFogo == true)
+        if(DetectorDeVantagem.TipoDIFogo == true)
         {
             Vantagem = true;
         }
@@ -932,26 +988,31 @@ public class CombatConfig : MonoBehaviour
     {
         if(Vantagem == true)
         {
-            Enemy2.VidaI -= 2;
+            Enemy2.DeuDano2 = true;
+            VidaI -= 2;
             danoI.SetActive(false);
             danoIV.SetActive(true);
             danoPlayer.SetActive(false);
-            print("Acertou.com vantagem Vida " + Enemy2.VidaI);
-            if(Enemy2.VidaI <= 0)
+            if(VidaI <= 0)
             {
+                Player2.Ataque = true;
                 StartCoroutine("AtivarArea");
+                StartCoroutine("Matou");
             }
         }
         else if(Vantagem == false)
         {
-            Enemy2.VidaI -= 1;
+            Enemy2.DeuDano = true;
+            VidaI -= 1;
             danoI.SetActive(true);
             danoIV.SetActive(false);
             danoPlayer.SetActive(false);
-            print("Acertou.sem vantagem Vida " + Enemy2.VidaI);
-            if (Enemy2.VidaI <= 0)
+            
+            if (VidaI <= 0)
             {
+                Player2.Ataque = true;
                 StartCoroutine("AtivarArea");
+                StartCoroutine("Matou");
             }
         }
 
@@ -972,6 +1033,8 @@ public class CombatConfig : MonoBehaviour
             randomR();
         }
 
+
+        Player2.Ataque = true;
     }
     public void Errou()
     {
@@ -980,9 +1043,19 @@ public class CombatConfig : MonoBehaviour
         danoIV.SetActive(false);
         danoPlayer.SetActive(true);
         Enemy2.atacandoI = true;
-        print("Errou. Vida " + Player2.Vida);
+        if(Player2.gameOver == false)
+        {
+            Player2.Hit = true;
+        }
+
     }
 
+    IEnumerator Matou()
+    {
+        yield return new WaitForSeconds(4f);
+        Player2.OffCombat = true;
+        HideHudcombat();
+    }
     IEnumerator AtivarArea()
     {
         AreaAtaque.SetActive(true);

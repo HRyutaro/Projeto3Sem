@@ -5,12 +5,18 @@ using UnityEngine;
 public class MenuInicial : MonoBehaviour
 {
     public static int faseAtual;
-    public GameObject continuar; 
+    public GameObject continuar;
+
+    public GameObject MeiNivel1;
+    public GameObject MeiNivel2;
+
     void Start()
     {
         if (faseAtual > 1)
         {
             continuar.SetActive(true);
+            MeiNivel1.SetActive(false);
+            MeiNivel2.SetActive(true);
         }
     }
 

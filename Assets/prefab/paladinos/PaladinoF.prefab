@@ -1409,7 +1409,7 @@ GameObject:
   - component: {fileID: 9121832876709091980}
   m_Layer: 0
   m_Name: PaladinoF
-  m_TagString: InimigoFogo
+  m_TagString: InimigoVento
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1496,11 +1496,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   VidaInimigo: 4
-  VHp:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   Target: {fileID: 0}
   visionAngle: 50
   distanceMax: 12
@@ -1516,6 +1511,7 @@ MonoBehaviour:
   animator: {fileID: 6956702436997498577}
   espada: {fileID: 4572938507998907012}
   oncombat: 0
+  player: {fileID: 0}
 --- !u!1 &4455633301595885409
 GameObject:
   m_ObjectHideFlags: 0

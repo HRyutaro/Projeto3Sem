@@ -45,5 +45,7 @@ public class Config : MonoBehaviour
         Time.timeScale = 1;
         Pause.SetActive(false);
     }
+
+    
     
 }

@@ -44,10 +44,10 @@ public class Player2 : MonoBehaviour
 
     //som
     public AudioSource[] somPasso;
+    public AudioSource[] somPassoCorrer;
 
     void Start()
     {
-        MenuInicial.faseAtual = 2;
 
         Vida = 3;
         Vida1.SetActive(true);
@@ -162,8 +162,11 @@ public class Player2 : MonoBehaviour
 
         if(Hit == true)
         {
-            StartCoroutine("AnimHit");
-            Hit = false;
+            if(gameOver == false)
+            {
+                StartCoroutine("AnimHit");
+                Hit = false;
+            }
         }
 
     }
@@ -175,6 +178,13 @@ public class Player2 : MonoBehaviour
             somPasso[0].Play();
         else
             somPasso[1].Play();
+    }
+    public void PassoCorrer()
+    {
+        if (!somPassoCorrer[0].isPlaying)
+            somPassoCorrer[0].Play();
+        else
+            somPassoCorrer[1].Play();
     }
 
     //gameOver
@@ -190,7 +200,7 @@ public class Player2 : MonoBehaviour
             anim.SetBool("GameOver", true);
         }
         CameraController.lockCursor = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         
     }
@@ -221,8 +231,9 @@ public class Player2 : MonoBehaviour
 
     IEnumerator AnimHit()
     {
+        yield return new WaitForSeconds(0.8f);
         anim.SetBool("TomandoHit", true);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         anim.SetBool("TomandoHit", false);
     }
 

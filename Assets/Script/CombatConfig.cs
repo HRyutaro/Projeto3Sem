@@ -49,7 +49,6 @@ public class CombatConfig : MonoBehaviour
     public GameObject[] VHp = new GameObject[4];
     int VidaI;
 
-
     void Start()
     {
         HudCombat.SetActive(false);
@@ -1043,11 +1042,24 @@ public class CombatConfig : MonoBehaviour
         danoIV.SetActive(false);
         danoPlayer.SetActive(true);
         Enemy2.atacandoI = true;
-        if(Player2.gameOver == false)
-        {
-            Player2.Hit = true;
-        }
+        Player2.Hit = true;
 
+        if (pagA == true)
+        {
+            random();
+        }
+        if (pagF == true)
+        {
+            randomF();
+        }
+        if (pagV == true)
+        {
+            randomV();
+        }
+        if (pagR == true)
+        {
+            randomR();
+        }
     }
 
     IEnumerator Matou()
@@ -1062,4 +1074,5 @@ public class CombatConfig : MonoBehaviour
         yield return new WaitForSeconds(1f);
         AreaAtaque.SetActive(false);
     }
+
 }

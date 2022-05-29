@@ -18,22 +18,25 @@ public class BotaoMovimento : MonoBehaviour
         podeApertar = false;
         transform.position = casas[casaAtual];
         apertou = false;
+
     }
 
 
     void Update()
     {
-       
-        if (podeApertar == true)
+        if(Config.PagNumero >= 2)
         {
-            if (apertou == false)
+            if (podeApertar == true)
             {
-                if (Input.GetKeyDown(KeyCode.E))
+                if (apertou == false)
                 {
-                    StartCoroutine(Buttonpush());
-                    apertou = true;
-                }
+                    if (Input.GetKeyDown(KeyCode.E))
+                    {
+                        StartCoroutine(Buttonpush());
+                        apertou = true;
+                    }
 
+                }
             }
         }
     }

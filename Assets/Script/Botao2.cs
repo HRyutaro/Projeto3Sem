@@ -8,6 +8,7 @@ public class Botao2 : MonoBehaviour
 
     public GameObject Player;
     public GameObject PlayerButton;
+    public GameObject npodeInteragir;
     private bool podeApertar;
     private bool jaApertou;
 
@@ -45,15 +46,20 @@ public class Botao2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if(jaApertou == false)
+        if(Config.PagNumero >= 4)
         {
-            if (other.gameObject.CompareTag("Player"))
+            if(jaApertou == false)
             {
-                podeApertar = true;
-                Text.SetActive(true);
+                if (other.gameObject.CompareTag("Player"))
+                {
+                    podeApertar = true;
+                    Text.SetActive(true);
+                }
             }
-
+        }
+        else if(Config.PagNumero < 4)
+        {
+            npodeInteragir.SetActive(true);
         }
 
     }
@@ -65,5 +71,6 @@ public class Botao2 : MonoBehaviour
             podeApertar = false;
         }
         Text.SetActive(false);
+        npodeInteragir.SetActive(false);
     }
 }

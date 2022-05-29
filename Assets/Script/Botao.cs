@@ -5,6 +5,7 @@ using UnityEngine;
 public class Botao : MonoBehaviour
 {
     public GameObject Text;
+    public GameObject NpodeInteragir;
 
     void Start()
     {
@@ -19,19 +20,28 @@ public class Botao : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (BotaoMovimento.apertou == false)
+        if(Config.PagNumero < 2)
         {
-            if(other.gameObject.CompareTag("Player"))
+            NpodeInteragir.SetActive(true);
+        }
+        else if(Config.PagNumero >= 2)
+        {
+            if (BotaoMovimento.apertou == false)
             {
-                BotaoMovimento.podeApertar = true;
-                Text.SetActive(true);
+                if(other.gameObject.CompareTag("Player"))
+                {
+                    BotaoMovimento.podeApertar = true;
+                    Text.SetActive(true);
+                }
             }
+
         }
 
     }
     private void OnTriggerExit(Collider other)
     {
 
+        NpodeInteragir.SetActive(false);
         Text.SetActive(false);
     }
 

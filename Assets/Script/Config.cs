@@ -10,8 +10,15 @@ public class Config : MonoBehaviour
     //pause
     public GameObject Pause;
 
+    //Numero de pags
+    public GameObject[] NdePags;
+    public static int PagNumero = 0; 
+
     void Start()
     {
+        //Numero de pags
+        NdePags[0].SetActive(true);
+
         //gravidade
         Physics.gravity = Vector3.down * 9.81f * GravityMULT;
     }
@@ -35,6 +42,26 @@ public class Config : MonoBehaviour
             }
 
         }
+        if(PagNumero == 1)
+        {
+            NdePags[0].SetActive(false);
+            NdePags[1].SetActive(true);
+        }
+        if (PagNumero == 2)
+        {
+            NdePags[1].SetActive(false);
+            NdePags[2].SetActive(true);
+        }
+        if (PagNumero == 3)
+        {
+            NdePags[2].SetActive(false);
+            NdePags[3].SetActive(true);
+        }
+        if (PagNumero == 4)
+        {
+            NdePags[3].SetActive(false);
+            NdePags[4].SetActive(true);
+        }
 
     }
 
@@ -46,6 +73,5 @@ public class Config : MonoBehaviour
         Pause.SetActive(false);
     }
 
-    
     
 }

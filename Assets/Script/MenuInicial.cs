@@ -10,6 +10,8 @@ public class MenuInicial : MonoBehaviour
     public GameObject MeiNivel1;
     public GameObject MeiNivel2;
 
+    public AudioSource Porta;
+
     void Start()
     {
         if (faseAtual > 1)
@@ -49,7 +51,7 @@ public class MenuInicial : MonoBehaviour
 
     IEnumerator fase1()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(7f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 1");
     }
 
@@ -57,6 +59,11 @@ public class MenuInicial : MonoBehaviour
     {
         yield return new WaitForSeconds(0.25f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 2");
+    }
+
+    public void PlaySom()
+    {
+        Porta.Play();
     }
 
 }

@@ -24,6 +24,9 @@ public class EnemyGuard : MonoBehaviour
     public Animator animator;
     public GameObject espada;
 
+    //som
+    public AudioSource[] somPasso;
+
     void Start()
     {
         //move
@@ -61,6 +64,13 @@ public class EnemyGuard : MonoBehaviour
       
     }
 
+    public void Passo()
+    {
+        if (!somPasso[0].isPlaying)
+            somPasso[0].Play();
+        else
+            somPasso[1].Play();
+    }
     //movimento
     IEnumerator MoviLerp(Vector3 targetPosition, float duration)
     {

@@ -37,6 +37,7 @@ public class Enemy2 : MonoBehaviour
     public static bool DeuDano;
     public static bool DeuDano2;
 
+    public AudioSource[] somPasso;
     void Start()
     {
 
@@ -102,7 +103,13 @@ public class Enemy2 : MonoBehaviour
             StartCoroutine("ReceberDano");
         }
     }
-
+    public void Passo()
+    {
+        if (!somPasso[0].isPlaying)
+            somPasso[0].Play();
+        else
+            somPasso[1].Play();
+    }
     //movimento
     IEnumerator MoviLerp(Vector3 targetPosition, float duration)
     {

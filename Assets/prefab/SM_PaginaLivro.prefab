@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.011678106, y: 0.010000002, z: 1.2162387}
-  m_Center: {x: -0.00013901171, y: 0.0000000012479806, z: 0.004038198}
+  m_Size: {x: 0.021297926, y: 0.010000002, z: 6.8617125}
+  m_Center: {x: -0.000046608468, y: 0.0000000012479806, z: 0.08317091}
 --- !u!114 &6276185158654751555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

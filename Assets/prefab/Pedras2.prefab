@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6043984592873944203}
   - component: {fileID: 7228084316174056238}
   - component: {fileID: 4876174821768073188}
-  - component: {fileID: 2630432645320376302}
+  - component: {fileID: -1189659729002495974}
   m_Layer: 0
   m_Name: Pedras2
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2630432645320376302
-BoxCollider:
+--- !u!64 &-1189659729002495974
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.43941742, y: 0.21688265, z: 0.60404503}
-  m_Center: {x: 0, y: 0, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -3758573805739257388, guid: a8340b8f827949643a5f26dbb53902ce, type: 3}

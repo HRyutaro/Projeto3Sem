@@ -31,6 +31,7 @@ public class MenuInicial : MonoBehaviour
     {
         if (faseAtual == 2)
         {
+            Config.PagNumero = 3;
             StartCoroutine("fase2");
         }
     }
@@ -42,6 +43,7 @@ public class MenuInicial : MonoBehaviour
         StartCoroutine("fase1");
         faseAtual = 1;
         Time.timeScale = 1;
+        Config.PagNumero = 0;
     }
 
     public void SairDoJogo()

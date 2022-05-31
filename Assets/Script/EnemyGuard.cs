@@ -57,14 +57,22 @@ public class EnemyGuard : MonoBehaviour
             Player2.gameOver = true;
             stop = true;
             espada.SetActive(true);
-            animator.SetBool("DrawSword", true);
+            StartCoroutine("DrawSword");
             StopAllCoroutines();
             
         }
       
     }
+    
+    IEnumerator DrawSword()
+    {
+        animator.SetBool("DrawSword", true);
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("DrawSword", false);
 
-    public void Passo()
+    }
+
+    public void PassoE()
     {
         if (!somPasso[0].isPlaying)
             somPasso[0].Play();

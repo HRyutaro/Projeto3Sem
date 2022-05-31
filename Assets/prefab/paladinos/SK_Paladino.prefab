@@ -1473,6 +1473,8 @@ MonoBehaviour:
   casaFinal: 1
   casaFinalR: 1
   animator: {fileID: 1983646146194815740}
+  espada: {fileID: 0}
+  somPasso: []
 --- !u!1 &5351909306880522129
 GameObject:
   m_ObjectHideFlags: 0

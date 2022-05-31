@@ -900,7 +900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7956686983647782822}
-  - component: {fileID: 8741015935044288216}
+  - component: {fileID: 3986324803325346980}
   m_Layer: 0
   m_Name: SM_Casa_C3
   m_TagString: Untagged
@@ -937,8 +937,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!65 &8741015935044288216
-BoxCollider:
+--- !u!64 &3986324803325346980
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -947,9 +947,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 12.225969, y: 6.593043, z: 5.9618998}
-  m_Center: {x: -0.013639662, y: 3.222267, z: -0.0068659782}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &7464112067239483079
 GameObject:
   m_ObjectHideFlags: 0

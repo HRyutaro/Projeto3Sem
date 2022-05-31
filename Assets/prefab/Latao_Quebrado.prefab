@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4355736817978061931}
   - component: {fileID: 854967166479580110}
   - component: {fileID: 3186722600738082564}
-  - component: {fileID: 4429908542729422277}
+  - component: {fileID: 6819684706337895283}
   m_Layer: 0
   m_Name: Latao_Quebrado
   m_TagString: Untagged
@@ -82,8 +82,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4429908542729422277
-BoxCollider:
+--- !u!64 &6819684706337895283
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -92,6 +92,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.020421019, y: 0.020068252, z: 0.020736236}
-  m_Center: {x: -0.000013096844, y: 0.010034126, z: 0}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5076798556035486163, guid: de0380cccb3f38e43ac430593a2d622b, type: 3}

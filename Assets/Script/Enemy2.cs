@@ -27,9 +27,6 @@ public class Enemy2 : MonoBehaviour
     public GameObject espada;
     public static bool atacandoI;
 
-    //Sound
-    //public AudioSource somPasso;
-
     public bool oncombat;
 
     public GameObject player;
@@ -37,7 +34,9 @@ public class Enemy2 : MonoBehaviour
     public static bool DeuDano;
     public static bool DeuDano2;
 
+    //Sound
     public AudioSource[] somPasso;
+
     void Start()
     {
 
@@ -103,7 +102,7 @@ public class Enemy2 : MonoBehaviour
             StartCoroutine("ReceberDano");
         }
     }
-    public void Passo()
+    public void PassoE()
     {
         if (!somPasso[0].isPlaying)
             somPasso[0].Play();

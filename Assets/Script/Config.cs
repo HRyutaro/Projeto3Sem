@@ -18,13 +18,17 @@ public class Config : MonoBehaviour
     {
         //Numero de pags
         NdePags[0].SetActive(true);
-
         //gravidade
         Physics.gravity = Vector3.down * 9.81f * GravityMULT;
     }
 
     void Update()
     {
+        if (PagNumero == 6)
+        {
+            StartCoroutine("FimDeJogo");
+        }
+
         //pause
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -57,12 +61,13 @@ public class Config : MonoBehaviour
             NdePags[2].SetActive(false);
             NdePags[3].SetActive(true);
         }
-        if (PagNumero == 4)
-        {
-            NdePags[3].SetActive(false);
-            NdePags[4].SetActive(true);
-        }
 
+    }
+
+    IEnumerator FimDeJogo()
+    {
+        yield return new WaitForSeconds(1f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("FimDeJogo");
     }
 
     //Botões

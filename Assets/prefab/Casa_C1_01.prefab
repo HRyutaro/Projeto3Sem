@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 6965655289382852590}
   - component: {fileID: 6270454345325828171}
   - component: {fileID: 8134018010280340609}
-  - component: {fileID: 7431014053550526818}
+  - component: {fileID: 2071784723636340746}
   m_Layer: 0
   m_Name: Casa_C1_01
   m_TagString: Untagged
@@ -164,8 +164,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7431014053550526818
-BoxCollider:
+--- !u!64 &2071784723636340746
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -174,6 +174,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5.802473, y: 3.147447, z: 3.1474419}
-  m_Center: {x: 0, y: 1.573718, z: 0.00000047683716}
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3369316746193770658, guid: 43f5163cf49f6bb409c6e0b3b007a79b, type: 3}

@@ -23,12 +23,14 @@ public class GameOver : MonoBehaviour
             CameraController.lockCursor = true;
             StartCoroutine("fase1");
             Time.timeScale = 1;
+            Config.PagNumero = 0;
         }
         if(MenuInicial.faseAtual == 2)
         {
             CameraController.lockCursor = true;
             StartCoroutine("fase2");
             Time.timeScale = 1;
+            Config.PagNumero = 3;
         }
     }
     public void VoltaMenu()

@@ -46,7 +46,7 @@ public class Botao2 : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(Config.PagNumero >= 4)
+        if(Config.PagNumero >= 3)
         {
             if(jaApertou == false)
             {
@@ -57,7 +57,7 @@ public class Botao2 : MonoBehaviour
                 }
             }
         }
-        else if(Config.PagNumero < 4)
+        else if(Config.PagNumero < 3)
         {
             npodeInteragir.SetActive(true);
         }

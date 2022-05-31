@@ -51,7 +51,7 @@ public class MenuInicial : MonoBehaviour
 
     IEnumerator fase1()
     {
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(5f);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Fase 1");
     }
 

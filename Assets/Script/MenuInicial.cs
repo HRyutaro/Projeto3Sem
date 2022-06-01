@@ -11,6 +11,9 @@ public class MenuInicial : MonoBehaviour
     public GameObject MeiNivel2;
 
     public AudioSource Porta;
+    public GameObject[] BotaoInstrucao;
+
+    bool ExibirInstrucao;
 
     void Start()
     {
@@ -20,11 +23,25 @@ public class MenuInicial : MonoBehaviour
             MeiNivel1.SetActive(false);
             MeiNivel2.SetActive(true);
         }
+        ExibirInstrucao = false;
     }
 
     void Update()
     {
-
+        if(ExibirInstrucao == true)
+        {
+            BotaoInstrucao[0].SetActive(true);
+            BotaoInstrucao[1].SetActive(true);
+            BotaoInstrucao[2].SetActive(true);
+            BotaoInstrucao[3].SetActive(true);
+        }
+        else
+        {
+            BotaoInstrucao[0].SetActive(false);
+            BotaoInstrucao[1].SetActive(false);
+            BotaoInstrucao[2].SetActive(false);
+            BotaoInstrucao[3].SetActive(false);
+        }
     }
 
     public void Continuar()
@@ -68,4 +85,8 @@ public class MenuInicial : MonoBehaviour
         Porta.Play();
     }
 
+    public void botaoInstrucao()
+    {
+        ExibirInstrucao = !ExibirInstrucao;  
+    }
 }

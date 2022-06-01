@@ -12,23 +12,28 @@ public class Config : MonoBehaviour
 
     //Numero de pags
     public GameObject[] NdePags;
-    public static int PagNumero = 0; 
+    public static int PagNumero;
+
+    //PauseBotoes
+    public GameObject[] MenuBotoes;
+
+    //intruçoes
+    public GameObject[] Instrucoes;
+    bool InstrucoesExibir;
+    
 
     void Start()
     {
         //Numero de pags
         NdePags[0].SetActive(true);
+
         //gravidade
         Physics.gravity = Vector3.down * 9.81f * GravityMULT;
+        
     }
 
     void Update()
     {
-        if (PagNumero == 6)
-        {
-            StartCoroutine("FimDeJogo");
-        }
-
         //pause
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -61,6 +66,22 @@ public class Config : MonoBehaviour
             NdePags[2].SetActive(false);
             NdePags[3].SetActive(true);
         }
+        if (PagNumero == 4)
+        {
+            NdePags[3].SetActive(false);
+            NdePags[4].SetActive(true);
+        }
+        if (PagNumero == 5)
+        {
+            NdePags[4].SetActive(false);
+            NdePags[5].SetActive(true);
+        }
+        if (PagNumero == 6)
+        {
+            NdePags[5].SetActive(false);
+            NdePags[6].SetActive(true);
+            StartCoroutine("FimDeJogo");
+        }
 
     }
 
@@ -77,6 +98,32 @@ public class Config : MonoBehaviour
         Time.timeScale = 1;
         Pause.SetActive(false);
     }
-
     
+    public void IntruBotoes()
+    {
+            Instrucoes[0].SetActive(true);
+            Instrucoes[1].SetActive(true);
+            Instrucoes[2].SetActive(true);
+            Instrucoes[3].SetActive(true);
+            Instrucoes[4].SetActive(true);
+
+            MenuBotoes[0].SetActive(false);
+            MenuBotoes[1].SetActive(false);
+            MenuBotoes[2].SetActive(false);
+            MenuBotoes[3].SetActive(false);
+    }
+
+    public void Voltar()
+    {
+        Instrucoes[0].SetActive(false);
+        Instrucoes[1].SetActive(false);
+        Instrucoes[2].SetActive(false);
+        Instrucoes[3].SetActive(false);
+        Instrucoes[4].SetActive(false);
+
+        MenuBotoes[0].SetActive(true);
+        MenuBotoes[1].SetActive(true);
+        MenuBotoes[2].SetActive(true);
+        MenuBotoes[3].SetActive(true);
+    }
 }

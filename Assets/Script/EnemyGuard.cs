@@ -51,15 +51,19 @@ public class EnemyGuard : MonoBehaviour
 
     void Update()
     {
-        //vision
-        if (OnVision())
+        if(Player2.Deus == false)
         {
-            Player2.gameOver = true;
-            stop = true;
-            espada.SetActive(true);
-            StartCoroutine("DrawSword");
-            StopAllCoroutines();
+            //vision
+            if (OnVision())
+            {
+                Player2.gameOver = true;
+                stop = true;
+                espada.SetActive(true);
+                StartCoroutine("DrawSword");
+                StopAllCoroutines();
             
+            }
+
         }
       
     }

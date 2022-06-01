@@ -14,7 +14,9 @@ public class Player2 : MonoBehaviour
     //movimento
     float InputX;
     float InputZ;
+    float InputY;
     public float Velocidade;
+    float VelocidadeAtual;
     public Animator anim;
 
     //Camera
@@ -22,9 +24,7 @@ public class Player2 : MonoBehaviour
     public Camera MainCamera;
 
     //pulo
-    public float JumpForce;
     private Rigidbody rb;
-    private bool jumping;
 
     //game over
     public static bool gameOver = false;
@@ -38,6 +38,7 @@ public class Player2 : MonoBehaviour
     public static bool OffCombat;
 
     private GameObject inimigo;
+
     //Anim Combat
     public static bool Ataque;
     public static bool Hit;
@@ -45,6 +46,9 @@ public class Player2 : MonoBehaviour
     //som
     public AudioSource[] somPasso;
     public AudioSource[] somPassoCorrer;
+
+    //modoDeus
+    public static bool Deus;
 
     void Start()
     {
@@ -61,6 +65,7 @@ public class Player2 : MonoBehaviour
         OnCombat = false;
         inimigo = GameObject.FindWithTag("Guardfoco");
 
+        VelocidadeAtual = Velocidade;
     }
 
 
@@ -75,39 +80,44 @@ public class Player2 : MonoBehaviour
         
         if(Stop == false)
         {
-
             if (InputX == 0 || InputZ == 0)
-            {
-            anim.SetFloat("Movingfoward", 0);
-            Velocidade = 5;
-            }
+                {
+                    anim.SetFloat("Movingfoward", 0);
+                }
 
             if (InputX != 0 || InputZ != 0)
-            {
-                if (Input.GetKey(KeyCode.LeftShift))
                 {
-                Velocidade = 10;
-                var camrot = MainCamera.transform.rotation;
-                camrot.x = 0;
-                camrot.z = 0;
+                    if (Input.GetKey(KeyCode.LeftShift))
+                    {
+                        VelocidadeAtual = 10;
+                        var camrot = MainCamera.transform.rotation;
+                        camrot.x = 0;
+                        camrot.z = 0;
 
-                transform.Translate(0, 0, Time.deltaTime * Velocidade);
-                anim.SetFloat("Movingfoward", 2);
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
+                        transform.Translate(0, 0, Time.deltaTime * VelocidadeAtual);
+                        anim.SetFloat("Movingfoward", 2);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
+                    }
+                    else 
+                    {
+                        if(Deus == false)
+                        {
+                            if (VelocidadeAtual > 5)
+                            {
+                                VelocidadeAtual -= 5;
+                            }
+                        }
+
+                        var camrot = MainCamera.transform.rotation;
+                        camrot.x = 0;
+                        camrot.z = 0;
+
+                        transform.Translate(0, 0, Time.deltaTime * VelocidadeAtual);
+                        anim.SetFloat("Movingfoward", 1);
+                        transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
+                    }
+
                 }
-
-                else
-                {
-                var camrot = MainCamera.transform.rotation;
-                camrot.x = 0;
-                camrot.z = 0;
-
-                transform.Translate(0, 0, Time.deltaTime * Velocidade);
-                anim.SetFloat("Movingfoward", 1);
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(Direcao) * camrot, 2 * Time.deltaTime);
-                }
-
-            }
 
 
         }
@@ -169,7 +179,37 @@ public class Player2 : MonoBehaviour
             }
         }
 
+        //modoDeus
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Deus = !Deus;
+            print("Modo Deus " + Deus);
+        }
+        if(Deus == true)
+        {
+            VelocidadeAtual = 50;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX |
+                RigidbodyConstraints.FreezeRotationY | 
+                RigidbodyConstraints.FreezeRotationZ |
+                RigidbodyConstraints.FreezePositionY;
+            if(Input.GetKey(KeyCode.Z))
+            {
+                transform.position = transform.position + new Vector3(0,transform.position.y * 1 * Time.deltaTime,0);
+            }
+            if(Input.GetKey(KeyCode.C))
+            {
+                transform.position = transform.position + new Vector3(0, transform.position.y * -1 * Time.deltaTime, 0);
+            }
+        }
+        else
+        {
+            VelocidadeAtual = Velocidade;
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
+        }
+
     }
+
 
     //som
     public void Passo()
@@ -190,18 +230,21 @@ public class Player2 : MonoBehaviour
     //gameOver
     public IEnumerator FimdeJogo()
     {
-        Stop = true;
-        if(MenuInicial.faseAtual == 2)
+        if(Deus == false)
         {
-            anim.SetBool("GameOver2", true);
+            Stop = true;
+            if(MenuInicial.faseAtual == 2)
+            {
+                anim.SetBool("GameOver2", true);
+            }
+            else
+            {
+                anim.SetBool("GameOver", true);
+            }
+            CameraController.lockCursor = false;
+            yield return new WaitForSeconds(3f);
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
-        else
-        {
-            anim.SetBool("GameOver", true);
-        }
-        CameraController.lockCursor = false;
-        yield return new WaitForSeconds(3f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         
     }
 

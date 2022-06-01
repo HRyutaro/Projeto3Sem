@@ -25,10 +25,14 @@ public class EnemyGuardIdle : MonoBehaviour
 
     void Update()
     {
-        if (OnVision())
+        if (Player2.Deus == false)
         {
-            Player2.gameOver = true;
-            animator.SetBool("DrawSword", true);
+            if (OnVision())
+            {
+                Player2.gameOver = true;
+                animator.SetBool("DrawSword", true);
+            }
+
         }
     }
 

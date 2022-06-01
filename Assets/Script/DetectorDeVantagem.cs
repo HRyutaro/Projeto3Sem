@@ -34,6 +34,7 @@ public class DetectorDeVantagem : MonoBehaviour
     {
         if(other.tag == "InimigoAgua")
         {
+
             TipoDIAgua = true;
             TipoDIFogo = false;
             TipoDIRaio = false;
@@ -78,6 +79,18 @@ public class DetectorDeVantagem : MonoBehaviour
             NomeAgua.SetActive(false);
             NomeFogo.SetActive(false);
             NomeRaio.SetActive(true);
+            NomeVento.SetActive(false);
+        }
+        else
+        {
+            TipoDIAgua = false;
+            TipoDIFogo = false;
+            TipoDIRaio = false;
+            TipoDIVento = false;
+
+            NomeAgua.SetActive(false);
+            NomeFogo.SetActive(false);
+            NomeRaio.SetActive(false);
             NomeVento.SetActive(false);
         }
        

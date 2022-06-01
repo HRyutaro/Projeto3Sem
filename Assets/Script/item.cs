@@ -22,7 +22,7 @@ public class item : MonoBehaviour
 
     void Update()
     {
-        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 5f));
+        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 1f));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,6 +54,6 @@ public class item : MonoBehaviour
         {
             casaARotation = -1;
         }
-        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 5f));
+        StartCoroutine(MoviRotationLerp(roda[casaARotation + 1], 1f));
     }
 }

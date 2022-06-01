@@ -65,20 +65,24 @@ public class Enemy2 : MonoBehaviour
         //vision
         if (oncombat == false)
         {
-            if (OnVision())
+            if(Player2.Deus == false)
             {
+                if (OnVision())
+                {
 
-                olhar();
-                hudcombaton();
+                    olhar();
+                    hudcombaton();
 
-                espada.SetActive(true);
+                    espada.SetActive(true);
 
-                stop = true;
-                StopAllCoroutines();
-                StartCoroutine("animCombatidle");
+                    stop = true;
+                    StopAllCoroutines();
+                    StartCoroutine("animCombatidle");
                 
 
-                oncombat = true;
+                    oncombat = true;
+                }
+
             }
 
         }

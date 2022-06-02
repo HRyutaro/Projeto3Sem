@@ -36,6 +36,7 @@ public class Enemy2 : MonoBehaviour
 
     //Sound
     public AudioSource[] somPasso;
+    public AudioSource golpeEspada;
 
     void Start()
     {
@@ -114,6 +115,12 @@ public class Enemy2 : MonoBehaviour
         else
             somPasso[1].Play();
     }
+
+    public void Golpe()
+    {
+        golpeEspada.Play();
+    }
+
     //movimento
     IEnumerator MoviLerp(Vector3 targetPosition, float duration)
     {

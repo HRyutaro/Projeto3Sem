@@ -1091,7 +1091,7 @@ public class CombatConfig : MonoBehaviour
             {
                 randomR();
             }
-            if (VidaI > 0)
+            if (VidaI <= 0)
             {
                 Raio[0].SetActive(false);
                 Raio[1].SetActive(false);

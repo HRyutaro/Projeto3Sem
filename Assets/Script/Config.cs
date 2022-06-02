@@ -157,6 +157,7 @@ public class Config : MonoBehaviour
         Instrucoes[4].SetActive(true);
         Instrucoes[5].SetActive(true);
         Instrucoes[6].SetActive(true);
+        Instrucoes[7].SetActive(true);
 
         MenuBotoes[0].SetActive(false);
         MenuBotoes[1].SetActive(false);
@@ -174,6 +175,7 @@ public class Config : MonoBehaviour
         Instrucoes[4].SetActive(false);
         Instrucoes[5].SetActive(false);
         Instrucoes[6].SetActive(false);
+        Instrucoes[7].SetActive(false);
 
         MenuBotoes[0].SetActive(true);
         MenuBotoes[1].SetActive(true);

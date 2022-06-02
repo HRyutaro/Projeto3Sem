@@ -46,6 +46,7 @@ public class Player2 : MonoBehaviour
     //som
     public AudioSource[] somPasso;
     public AudioSource[] somPassoCorrer;
+    public AudioSource feiticoSom;
 
     //modoDeus
     public static bool Deus;
@@ -89,7 +90,7 @@ public class Player2 : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.LeftShift))
                     {
-                        VelocidadeAtual = 10;
+                        VelocidadeAtual = Velocidade +5;
                         var camrot = MainCamera.transform.rotation;
                         camrot.x = 0;
                         camrot.z = 0;
@@ -104,7 +105,7 @@ public class Player2 : MonoBehaviour
                         {
                             if (VelocidadeAtual > 5)
                             {
-                                VelocidadeAtual -= 5;
+                                VelocidadeAtual = Velocidade;
                             }
                         }
 
@@ -192,11 +193,11 @@ public class Player2 : MonoBehaviour
                 RigidbodyConstraints.FreezeRotationY | 
                 RigidbodyConstraints.FreezeRotationZ |
                 RigidbodyConstraints.FreezePositionY;
-            if(Input.GetKey(KeyCode.Z))
+            if(Input.GetKey(KeyCode.Space))
             {
                 transform.position = transform.position + new Vector3(0,transform.position.y * 5 * Time.deltaTime,0);
             }
-            if(Input.GetKey(KeyCode.C))
+            if(Input.GetKey(KeyCode.LeftControl))
             {
                 transform.position = transform.position + new Vector3(0, transform.position.y * -5 * Time.deltaTime, 0);
             }
@@ -225,6 +226,11 @@ public class Player2 : MonoBehaviour
             somPassoCorrer[0].Play();
         else
             somPassoCorrer[1].Play();
+    }
+
+    public void magia()
+    {
+        feiticoSom.Play();
     }
 
     //gameOver

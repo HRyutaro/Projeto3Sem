@@ -301,7 +301,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 550, y: 106}
+  m_AnchoredPosition: {x: 530, y: 92}
   m_SizeDelta: {x: 584.0487, y: 680.1621}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &157272269
@@ -325,7 +325,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d5922662c3de8714c861c756450471d2, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -337,9 +337,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Aperte "space" para continuar
-
-'
+  m_Text: "Aperte \"espa\xE7o\" para continuar\n"
 --- !u!222 &157272270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -691,8 +689,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -444, y: 248}
-  m_SizeDelta: {x: 455.8729, y: 259.94}
+  m_AnchoredPosition: {x: -435.98, y: 175.89581}
+  m_SizeDelta: {x: 586.345, y: 378.5511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &453411442
 MonoBehaviour:
@@ -715,7 +713,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: d5922662c3de8714c861c756450471d2, type: 3}
     m_FontSize: 36
     m_FontStyle: 0
     m_BestFit: 0
@@ -727,7 +725,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Fim de jogo\n obrigado por jogar\n\nfeito pelo grupo\n MEOW MEOW"
+  m_Text: "Fim de jogo\n Obrigado por jogar!\n\n\nFeito por:\n"
 --- !u!222 &453411443
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -914,7 +912,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -435.98004, y: -12}
+  m_AnchoredPosition: {x: -418, y: -67}
   m_SizeDelta: {x: 275.7883, y: 252.8541}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &786214160
@@ -1772,8 +1770,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_Font: {fileID: 12800000, guid: d5922662c3de8714c861c756450471d2, type: 3}
+    m_FontSize: 26
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10

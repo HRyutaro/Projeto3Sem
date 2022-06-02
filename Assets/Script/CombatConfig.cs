@@ -1024,25 +1024,84 @@ public class CombatConfig : MonoBehaviour
             }
         }
 
+
         if(pagA == true)
         {
             StartCoroutine("FeiticoA");
-            random();
+            if (VidaI > 0)
+            {
+                random();
+            }
+            else if(VidaI <= 0)
+            {
+                Agua[0].SetActive(false);
+                Agua[1].SetActive(false);
+                Agua[2].SetActive(false);
+                Agua[3].SetActive(false);
+                Agua[4].SetActive(false);
+                Agua[5].SetActive(false);
+                Agua[6].SetActive(false);
+                Agua[7].SetActive(false);
+            }
         }
         if(pagF == true)
         {
             StartCoroutine("FeiticoF");
-            randomF();
+            if (VidaI > 0)
+            {
+                randomF();
+            }
+            else if(VidaI <= 0)
+            {
+                fogo[0].SetActive(false);
+                fogo[1].SetActive(false);
+                fogo[2].SetActive(false);
+                fogo[3].SetActive(false);
+                fogo[4].SetActive(false);
+                fogo[5].SetActive(false);
+                fogo[6].SetActive(false);
+                fogo[7].SetActive(false);
+
+            }
+
         }
         if(pagV == true)
         {
             StartCoroutine("FeiticoV");
-            randomV();
+            if (VidaI > 0)
+            {
+                randomV();
+            }
+            else if (VidaI <= 0)
+            {
+                Vento[0].SetActive(false);
+                Vento[1].SetActive(false);
+                Vento[2].SetActive(false);
+                Vento[3].SetActive(false);
+                Vento[4].SetActive(false);
+                Vento[5].SetActive(false);
+                Vento[6].SetActive(false);
+                Vento[7].SetActive(false);
+            }
         }
         if(pagR == true)
         {
-            StartCoroutine("FeiticoR");         
-            randomR();
+            StartCoroutine("FeiticoR");
+            if (VidaI > 0)
+            {
+                randomR();
+            }
+            if (VidaI > 0)
+            {
+                Raio[0].SetActive(false);
+                Raio[1].SetActive(false);
+                Raio[2].SetActive(false);
+                Raio[3].SetActive(false);
+                Raio[4].SetActive(false);
+                Raio[5].SetActive(false);
+                Raio[6].SetActive(false);
+                Raio[7].SetActive(false);
+            }
         }
 
 

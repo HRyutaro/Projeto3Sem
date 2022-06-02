@@ -34,6 +34,8 @@ public class MenuInicial : MonoBehaviour
             BotaoInstrucao[1].SetActive(true);
             BotaoInstrucao[2].SetActive(true);
             BotaoInstrucao[3].SetActive(true);
+            BotaoInstrucao[4].SetActive(true);
+            BotaoInstrucao[5].SetActive(true);
         }
         else
         {
@@ -41,6 +43,8 @@ public class MenuInicial : MonoBehaviour
             BotaoInstrucao[1].SetActive(false);
             BotaoInstrucao[2].SetActive(false);
             BotaoInstrucao[3].SetActive(false);
+            BotaoInstrucao[4].SetActive(false);
+            BotaoInstrucao[5].SetActive(false);
         }
     }
 

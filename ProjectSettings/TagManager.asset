@@ -12,6 +12,8 @@ TagManager:
   - InimigoRaio
   - AreaAtaque
   - feitico
+  - Musica
+  - Fx
   layers:
   - Default
   - TransparentFX

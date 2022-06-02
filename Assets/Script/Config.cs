@@ -150,16 +150,19 @@ public class Config : MonoBehaviour
     
     public void IntruBotoes()
     {
-            Instrucoes[0].SetActive(true);
-            Instrucoes[1].SetActive(true);
-            Instrucoes[2].SetActive(true);
-            Instrucoes[3].SetActive(true);
-            Instrucoes[4].SetActive(true);
+        Instrucoes[0].SetActive(true);
+        Instrucoes[1].SetActive(true);
+        Instrucoes[2].SetActive(true);
+        Instrucoes[3].SetActive(true);
+        Instrucoes[4].SetActive(true);
+        Instrucoes[5].SetActive(true);
+        Instrucoes[6].SetActive(true);
 
-            MenuBotoes[0].SetActive(false);
-            MenuBotoes[1].SetActive(false);
-            MenuBotoes[2].SetActive(false);
-            MenuBotoes[3].SetActive(false);
+        MenuBotoes[0].SetActive(false);
+        MenuBotoes[1].SetActive(false);
+        MenuBotoes[2].SetActive(false);
+        MenuBotoes[3].SetActive(false);
+        MenuBotoes[4].SetActive(false);
     }
 
     public void Voltar()
@@ -169,10 +172,13 @@ public class Config : MonoBehaviour
         Instrucoes[2].SetActive(false);
         Instrucoes[3].SetActive(false);
         Instrucoes[4].SetActive(false);
+        Instrucoes[5].SetActive(false);
+        Instrucoes[6].SetActive(false);
 
         MenuBotoes[0].SetActive(true);
         MenuBotoes[1].SetActive(true);
         MenuBotoes[2].SetActive(true);
         MenuBotoes[3].SetActive(true);
+        MenuBotoes[4].SetActive(true);
     }
 }

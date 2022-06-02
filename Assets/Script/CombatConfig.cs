@@ -49,6 +49,13 @@ public class CombatConfig : MonoBehaviour
     public GameObject[] VHp = new GameObject[4];
     int VidaI;
 
+    //feitiços
+    public GameObject feiticoAgua;
+    public GameObject feiticoFogo;
+    public GameObject feiticoVento;
+    public GameObject feiticoRaio;
+    public Transform spawnFeitico;
+
     void Start()
     {
         HudCombat.SetActive(false);
@@ -74,6 +81,8 @@ public class CombatConfig : MonoBehaviour
         {
             ShowHudcombat();
             HudCombatOn = false;
+            Config.CombatOn = true;
+
         }
 
         //Combat
@@ -107,7 +116,7 @@ public class CombatConfig : MonoBehaviour
 
     void HideHudcombat()
     {
-        
+        Config.CombatOn = false;
         CameraController.lockCursor = true;
         HudCombat.SetActive(false);
         Player2.Stop = false;
@@ -1017,18 +1026,22 @@ public class CombatConfig : MonoBehaviour
 
         if(pagA == true)
         {
+            StartCoroutine("FeiticoA");
             random();
         }
         if(pagF == true)
         {
+            StartCoroutine("FeiticoF");
             randomF();
         }
         if(pagV == true)
         {
+            StartCoroutine("FeiticoV");
             randomV();
         }
         if(pagR == true)
         {
+            StartCoroutine("FeiticoR");         
             randomR();
         }
 
@@ -1042,7 +1055,7 @@ public class CombatConfig : MonoBehaviour
         danoIV.SetActive(false);
         danoPlayer.SetActive(true);
         Enemy2.atacandoI = true;
-        Player2.Hit = true;
+        Player2.Hit = !Player2.Hit;
 
         if (pagA == true)
         {
@@ -1060,6 +1073,27 @@ public class CombatConfig : MonoBehaviour
         {
             randomR();
         }
+
+    }
+    IEnumerator FeiticoA()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(feiticoAgua, spawnFeitico.position, spawnFeitico.rotation);
+    }
+    IEnumerator FeiticoF()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(feiticoFogo, spawnFeitico.position, spawnFeitico.rotation);
+    }
+    IEnumerator FeiticoV()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(feiticoVento, spawnFeitico.position, spawnFeitico.rotation);
+    }
+    IEnumerator FeiticoR()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Instantiate(feiticoRaio, spawnFeitico.position, spawnFeitico.rotation);
     }
 
     IEnumerator Matou()

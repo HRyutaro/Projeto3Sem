@@ -20,6 +20,8 @@ public class Config : MonoBehaviour
     //intruçoes
     public GameObject[] Instrucoes;
     bool InstrucoesExibir;
+
+    public static bool CombatOn;
     
 
     void Start()
@@ -39,48 +41,95 @@ public class Config : MonoBehaviour
         {
             if(Time.timeScale == 1)
             {
-                Pause.SetActive(true);
-                CameraController.lockCursor = false;
-                Time.timeScale = 0;
+                if(CombatOn == true)
+                {
+                    Pause.SetActive(true);
+                    Time.timeScale = 0;
+                }
+                else
+                {
+                    Pause.SetActive(true);
+                    CameraController.lockCursor = false;
+                    Time.timeScale = 0;
+                }
             }
             else if(Time.timeScale == 0)
             {
-                Pause.SetActive(false);
-                CameraController.lockCursor = true;
-                Time.timeScale = 1;
+                if(CombatOn == true)
+                {
+                    Pause.SetActive(false);
+                    Time.timeScale = 1;
+                }
+                else
+                {
+                    Pause.SetActive(false);
+                    CameraController.lockCursor = true;
+                    Time.timeScale = 1;
+                }
             }
 
         }
+
+
         if(PagNumero == 1)
         {
             NdePags[0].SetActive(false);
             NdePags[1].SetActive(true);
+            NdePags[2].SetActive(false);
+            NdePags[3].SetActive(false);
+            NdePags[4].SetActive(false);
+            NdePags[5].SetActive(false);
+            NdePags[6].SetActive(false);
         }
         if (PagNumero == 2)
         {
+            NdePags[0].SetActive(false);
             NdePags[1].SetActive(false);
             NdePags[2].SetActive(true);
+            NdePags[3].SetActive(false);
+            NdePags[4].SetActive(false);
+            NdePags[5].SetActive(false);
+            NdePags[6].SetActive(false);
         }
         if (PagNumero == 3)
         {
+            NdePags[0].SetActive(false);
+            NdePags[1].SetActive(false);
             NdePags[2].SetActive(false);
             NdePags[3].SetActive(true);
+            NdePags[4].SetActive(false);
+            NdePags[5].SetActive(false);
+            NdePags[6].SetActive(false);
         }
         if (PagNumero == 4)
         {
+            NdePags[0].SetActive(false);
+            NdePags[1].SetActive(false);
+            NdePags[2].SetActive(false);
             NdePags[3].SetActive(false);
             NdePags[4].SetActive(true);
+            NdePags[5].SetActive(false);
+            NdePags[6].SetActive(false);
         }
         if (PagNumero == 5)
         {
+            NdePags[0].SetActive(false);
+            NdePags[1].SetActive(false);
+            NdePags[2].SetActive(false);
+            NdePags[3].SetActive(false);
             NdePags[4].SetActive(false);
             NdePags[5].SetActive(true);
+            NdePags[6].SetActive(false);
         }
         if (PagNumero == 6)
         {
+            NdePags[0].SetActive(false);
+            NdePags[1].SetActive(false);
+            NdePags[2].SetActive(false);
+            NdePags[3].SetActive(false);
+            NdePags[4].SetActive(false);
             NdePags[5].SetActive(false);
             NdePags[6].SetActive(true);
-            StartCoroutine("FimDeJogo");
         }
 
     }

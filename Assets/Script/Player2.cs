@@ -194,11 +194,11 @@ public class Player2 : MonoBehaviour
                 RigidbodyConstraints.FreezePositionY;
             if(Input.GetKey(KeyCode.Z))
             {
-                transform.position = transform.position + new Vector3(0,transform.position.y * 1 * Time.deltaTime,0);
+                transform.position = transform.position + new Vector3(0,transform.position.y * 5 * Time.deltaTime,0);
             }
             if(Input.GetKey(KeyCode.C))
             {
-                transform.position = transform.position + new Vector3(0, transform.position.y * -1 * Time.deltaTime, 0);
+                transform.position = transform.position + new Vector3(0, transform.position.y * -5 * Time.deltaTime, 0);
             }
         }
         else

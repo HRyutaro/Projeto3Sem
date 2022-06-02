@@ -91,7 +91,7 @@ public class Enemy2 : MonoBehaviour
         if (atacandoI == true)
         {
             StartCoroutine("animAtaque");
-            atacandoI = false;
+            
         }
 
         //dano
@@ -105,6 +105,7 @@ public class Enemy2 : MonoBehaviour
             Dano(2);
             StartCoroutine("ReceberDano");
         }
+
     }
     public void PassoE()
     {
@@ -205,25 +206,28 @@ public class Enemy2 : MonoBehaviour
     
     //animação combat
     IEnumerator animAtaque()
+
     {
-        animator.SetBool("Ataque",true);
-        yield return new WaitForSeconds(1f);
-        animator.SetBool("Ataque",false);
+        animator.SetBool("golpe", true);
+        yield return new WaitForSeconds(3f);
+        animator.SetBool("golpe", false);
+        atacandoI = false;
     }
+
     IEnumerator animCombatidle()
     {
+        animator.SetFloat("Movingfoward", 0);
         animator.SetBool("DrawSword", true);
         yield return new WaitForSeconds(1f);
-        animator.SetFloat("Movingfoward", 0);
         animator.SetBool("DrawSword", false);
 
     }
     IEnumerator ReceberDano()
     {
         yield return new WaitForSeconds(1f);
-        animator.SetTrigger("ReceberDano");
+        animator.SetBool("ReceberDano", true);
         yield return new WaitForSeconds(1f);
-        animator.SetTrigger("ReceberDano");
+        animator.SetBool("ReceberDano", false);
     }
     IEnumerator Morte()
     {

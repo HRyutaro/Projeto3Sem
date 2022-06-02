@@ -11,6 +11,7 @@ TagManager:
   - InimigoVento
   - InimigoRaio
   - AreaAtaque
+  - feitico
   layers:
   - Default
   - TransparentFX
